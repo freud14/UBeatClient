@@ -1,0 +1,10 @@
+
+
+/*
+    Search field CSS
+*/
+#search-field, #search-button {
+    background-color: #333333;
+    border-color: #999999;
+    color: white;
+}
