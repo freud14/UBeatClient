@@ -181,8 +181,20 @@ ul.alert-dropdown {
     color: #df8a13;
 }
 
+/* Search */
+
 #search-field, #search-button {
     background-color: #333333;
     border-color: #999999;
     color: white;
+}
+
+/* Artist page display */
+
+.artist-info {
+
+}
+
+.albums-list ul li {
+    
 }
