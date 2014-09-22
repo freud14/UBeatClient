@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>UBeat</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="wrapper">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">UBeat Application</a>
+    </div>
+    <!-- Top Menu Items -->
+    <ul class="nav navbar-right top-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-user"></i> John Smith <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#"><i class="fa fa-fw fa-user"></i> Profil</a>
+          </li>
+          <li>
+            <a href="parameters.html"><i class="fa fa-fw fa-gear"></i> Paramètres</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#"><i class="fa fa-fw fa-power-off"></i> Déconnexion</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <!-- Search zone -->
+      <form action="" class="navbar-form navbar-right">
+        <div class="input-group">
+          <input type="Search" placeholder="Rechercher..." class="form-control" id="search-field"/>
+          <div class="input-group-btn">
+            <button class="btn btn-default" id="search-button" type="submit">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav side-nav">
+        <li class="active">
+          <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Accueil</a>
+        </li>
+        <li>
+          <a href="lists.html"><i class="fa fa-fw fa-th-list"></i> Ma file d'attente</a>
+        </li>
+        <li>
+          <a href="albums.html"><i class="fa fa-fw fa-folder"></i> Albums</a>
+        </li>
+        <li>
+          <a href="artists.html"><i class="fa fa-fw fa-star"></i> Artiste</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </nav>
+
+  <div id="page-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="artist-infos">
+            <img src="http://a1.mzstatic.com/us/r30/Features4/v4/ad/c6/85/adc685d6-de2a-96e1-9772-9d4cc0c21dbc/dj.yqujqjzb.100x100-75.jpg"/>
+            <h3>Metallica - Master of Puppets</h3>
+            <p>
+              Metal  - March 3, 1986 - 8 chansons 
+              <a href="https://itunes.apple.com/us/artist/metallica/id3996865?uo=4" target="itunes_store" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.png) no-repeat;width:110px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.svg);}"></a>
+            </p>
+          </div>
+          <hr>
+          <div class="albums-list">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Titre</th>
+                            <th>Durée</th>
+                            <th>Play now</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Battery</td>
+                            <td>5:10</td>
+                            <td>play</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Master of Puppets</td>
+                            <td>8:38</td>
+                            <td>play</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>The Thing That Should Not Be</td>
+                            <td>6:32</td>
+                            <td>play</td>
+                        </tr>
+                        <tr>
+                            
+                            <td>4</td>
+                            <td>Welcome Home (Sanitarium)</td>
+                            <td>6:28 </td>
+                            <td>play</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Disposable Heroes</td>
+                            <td>8:14 </td>
+                            <td>play</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Leper Messiah</td>
+                            <td>5:38</td>
+                            <td>play</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Orion</td>
+                            <td>8:12</td>
+                            <td>play</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Damage, Inc.</td>
+                            <td>5.06</td>
+                            <td>play</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery Version 1.11.0 -->
+<script src="js/jquery-1.11.0.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
