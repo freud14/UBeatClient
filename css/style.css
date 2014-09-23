@@ -4,9 +4,17 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
- body {
+body {
   margin-top: 100px;
   background-color: #222;
+}
+
+a {
+  color : #777;
+}
+
+a:hover {
+  color: #777;
 }
 
 #wrapper {
@@ -191,15 +199,38 @@ ul.alert-dropdown {
 
 /* Artist page display */
 
+.breadcrumb {
+  margin-top: 10px;
+  background-color: rgb(51, 51, 51);
+  border-radius: 0px;
+}
+
+.breadcrumb li a {
+  color : #777;
+}
+
+.breadcrumb li.active {
+  color : #fff;
+}
+
 .artist-info,.artist-img {
   float: left;
   margin: 0 6px 6px 0;
 }
 
-.albums-list {
-  margin-top: 200px;
-}
-
 .songs-list {
   margin-top: 10px;
+}
+
+.banniere {
+    width: 100%;
+}
+
+#artist-name {
+    display: inline-block;
+}
+
+#genre-name-link {
+    display: inline-block;
+    margin-left: 20px;
 }
