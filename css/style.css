@@ -197,5 +197,9 @@ ul.alert-dropdown {
 }
 
 .albums-list {
+  margin-top: 200px;
+}
+
+.songs-list {
   margin-top: 10px;
 }
