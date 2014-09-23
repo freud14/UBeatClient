@@ -47,4 +47,7 @@
   }
 
   td {font-size:12px;}
+
+  .breadcrumb {display:none;}
+  .banniere {margin-top:20px;}
 }
