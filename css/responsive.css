@@ -1,48 +1,48 @@
 @media(min-width:768px) {
-    body {
-        margin-top: 50px;
-    }
+  body {
+    margin-top: 50px;
+  }
 }
 
 @media(min-width:768px) {
-    #wrapper {
-        padding-left: 225px;
-    }
+  #wrapper {
+    padding-left: 225px;
+  }
 
-    #page-wrapper {
-        padding: 10px;
-    }
+  #page-wrapper {
+    padding: 10px;
+  }
 }
 
 @media(min-width:768px) {
-    .side-nav {
-        position: fixed;
-        top: 51px;
-        left: 225px;
-        width: 225px;
-        margin-left: -225px;
-        border: none;
-        border-radius: 0;
-        overflow-y: auto;
-        background-color: #222;
-    }
+  .side-nav {
+    position: fixed;
+    top: 51px;
+    left: 225px;
+    width: 225px;
+    margin-left: -225px;
+    border: none;
+    border-radius: 0;
+    overflow-y: auto;
+    background-color: #222;
+  }
 
-    .side-nav>li>a {
-        width: 225px;
-    }
+  .side-nav>li>a {
+    width: 225px;
+  }
 
-    .side-nav li a:hover,
-    .side-nav li a:focus {
-        outline: none;
-        background-color: #000 !important;
-    }
+  .side-nav li a:hover,
+  .side-nav li a:focus {
+    outline: none;
+    background-color: #000 !important;
+  }
 }
 
 @media screen and (max-width: 500px) {
-    /*
-        Search field CSS
-    */
-    #page-title {
-        font-size: 25px;
-    }
+  /*
+  Search field CSS
+  */
+  #page-title {
+    font-size: 25px;
+  }
 }
