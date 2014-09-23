@@ -70,6 +70,10 @@
   }
 }
 
+@media screen and (max-width: 767px) {
+  .albums-list .col-lg-3 {width:33%;float:left;display: inline-block;font-size:12px;}
+}
+
 @media screen and (max-width: 500px) {
   /*
   Search field CSS
@@ -82,4 +86,5 @@
 
   .breadcrumb {display:none;}
   .banniere {margin-top:20px;}
+  .albums-list .col-lg-3 {width:50%;float:left;display: inline-block;font-size:12px;}
 }
