@@ -17,6 +17,10 @@ a:hover {
   color: #777;
 }
 
+.row {
+    margin: 0px;
+}
+
 #wrapper {
   padding-left: 0;
 }
@@ -226,17 +230,22 @@ ul.alert-dropdown {
   width: 100%;
 }
 
-#artist-name {
-  display: inline-block;
-}
-
-#genre-name-link {
-  display: inline-block;
-  margin-left: 20px;
-}
-
 #itunes-button {
-  padding-bottom: 55px;
+  float: right;
+  margin-top: 15px;
+}
+
+.albums-list {
+  margin-top: 20px;
+}
+
+.albums-list div{
+  text-align: center;
+}
+
+.albums-list .img-responsive {
+  width: 100px;
+  margin: auto;
 }
 
 .menu-text {
