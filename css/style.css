@@ -223,14 +223,18 @@ ul.alert-dropdown {
 }
 
 .banniere {
-    width: 100%;
+  width: 100%;
 }
 
 #artist-name {
-    display: inline-block;
+  display: inline-block;
 }
 
 #genre-name-link {
-    display: inline-block;
-    margin-left: 20px;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+#itunes-button {
+  padding-bottom: 55px;
 }
