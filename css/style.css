@@ -238,3 +238,7 @@ ul.alert-dropdown {
 #itunes-button {
   padding-bottom: 55px;
 }
+
+.menu-text {
+  display: inline;
+}
