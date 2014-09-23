@@ -12,23 +12,26 @@
 
 @media(min-width:768px) {
   #wrapper {
-    padding-left: 50px;
+    padding-left: 75px;
   }
 
   .side-nav {
     position: fixed;
     top: 51px;
-    left: 50px;
-    width: 50px;
-    margin-left: -50px;
-    border: none;
-    border-radius: 0;
-    overflow-y: auto;
+    left: 75px;
+    width: 75px;
+    margin-left: -75px;
     background-color: #222;
   }
 
   .side-nav>li>a {
-    width: 50px;
+    width: 75px;
+    height: 75px;
+  }
+
+  .side-nav>li>a>i {
+    width: 40px;
+    padding-top: 18px;
   }
 
   .side-nav li a:hover,
@@ -44,19 +47,20 @@
   }
 
   .side-nav {
-    position: fixed;
-    top: 51px;
     left: 225px;
     width: 225px;
     margin-left: -225px;
-    border: none;
-    border-radius: 0;
-    overflow-y: auto;
     background-color: #222;
   }
 
   .side-nav>li>a {
     width: 225px;
+    height: 50px;
+  }
+
+  .side-nav>li>a>i {
+    width: auto;
+    padding-top: 0px;
   }
 
   .side-nav li a:hover,
