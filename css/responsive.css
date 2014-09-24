@@ -84,6 +84,18 @@
 
   td {font-size:12px;}
 
+  h3 {
+    font-size: 19px;
+  }
+
+  div.artist-infos .img-responsive {
+    margin: auto;
+  }
+
+  .col-lg-12 .artist-infos {
+    margin-top: 10px;
+  }
+
   .breadcrumb {display:none;}
   .banniere {margin-top:20px;}
   .albums-list .col-lg-3 {width:50%;float:left;display: inline-block;font-size:12px;}
