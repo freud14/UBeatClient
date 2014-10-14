@@ -1,0 +1,12 @@
+define([
+  // These are path alias that we configured in our bootstrap
+  'jquery',     // lib/jquery/jquery
+  'underscore', // lib/underscore/underscore
+  'backbone'
+], function($, _, Backbone){
+  var TaskModel = Backbone.extend({
+      url: "http://localhost:5000/tasks/1"
+  });
+  return TaskModel;
+  // What we return here will be used by other modules
+});

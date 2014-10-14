@@ -1,0 +1,102 @@
+@media(min-width:768px) {
+  body {
+    margin-top: 50px;
+  }
+}
+
+@media(min-width:768px) {
+  #page-wrapper {
+    padding: 10px;
+  }
+}
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 75px;
+  }
+
+  .side-nav {
+    position: fixed;
+    top: 51px;
+    left: 75px;
+    width: 75px;
+    margin-left: -75px;
+    background-color: #222;
+  }
+
+  .side-nav>li>a {
+    width: 75px;
+    height: 75px;
+  }
+
+  .side-nav>li>a>i {
+    width: 40px;
+    padding-top: 18px;
+  }
+
+  .side-nav li a:hover,
+  .side-nav li a:focus {
+    outline: none;
+    background-color: #000 !important;
+  }
+}
+
+@media(min-width:992px) {
+  #wrapper {
+    padding-left: 225px;
+  }
+
+  .side-nav {
+    left: 225px;
+    width: 225px;
+    margin-left: -225px;
+    background-color: #222;
+  }
+
+  .side-nav>li>a {
+    width: 225px;
+    height: 50px;
+  }
+
+  .side-nav>li>a>i {
+    width: auto;
+    padding-top: 0px;
+  }
+
+  .side-nav li a:hover,
+  .side-nav li a:focus {
+    outline: none;
+    background-color: #000 !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .albums-list .col-lg-3 {width:33%;float:left;display: inline-block;font-size:12px;}
+}
+
+@media screen and (max-width: 500px) {
+  /*
+  Search field CSS
+  */
+  #page-title {
+    font-size: 25px;
+  }
+
+  td {font-size:12px;}
+
+  h3 {
+    font-size: 19px;
+  }
+
+  div.artist-infos .img-responsive {
+    margin: auto;
+  }
+
+  .col-lg-12 .artist-infos {
+    margin-top: 10px;
+  }
+
+  .breadcrumb {display:none;}
+  .banniere {margin-top:20px;}
+  .albums-list .col-lg-3 {width:50%;float:left;display: inline-block;font-size:12px;}
+}

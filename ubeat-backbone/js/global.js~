@@ -1,0 +1,15 @@
+var configDev = {
+    webroot: "http://localhost/enveloppe/web/app_dev.php",
+    assetroot: "http://localhost"
+
+};
+
+var configProd = {
+    webroot: "http://enveloppe.dyndns.org"
+};
+
+
+var config = configDev;
+
+
+

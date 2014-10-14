@@ -1,0 +1,13 @@
+// Filename: collections/items
+define([
+  'underscore',
+  'backbone',
+  'models/task'
+], function(_, Backbone, TaskModel){
+  var TasksCollection = Backbone.Collection.extend({
+    model: TaskModel,
+    url: 'http://localhost:5000/tasks',
+    storeName: 'TaskCollection'
+    });
+  return TasksCollection;
+});
