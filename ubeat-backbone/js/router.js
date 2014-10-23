@@ -17,7 +17,7 @@ define([
       indexView.render();
     },
     album: function() {
-      var albumView = new AlbumView();
+      var albumView = new AlbumView({id : 579147674});
       albumView.render();
     },
     artist: function() {
