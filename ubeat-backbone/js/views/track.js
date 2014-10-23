@@ -35,7 +35,6 @@ define([
     },
 
     play: function() {
-      console.log(this.model.toJSON());
       this.eventBus.trigger("playSong", this.model.toJSON());
     },
   });
