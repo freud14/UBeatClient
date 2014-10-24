@@ -6,7 +6,7 @@ define([
   'config',
 ], function($, _, Backbone, config) {
   Playlist = Backbone.Model.extend({
-    url: config.API_URL + 'playlists/',
+    urlRoot: config.API_URL + 'playlists/',
   });
   return Playlist;
 });

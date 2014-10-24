@@ -1,0 +1,6 @@
+<select class="playlists">
+  <option value="">Ajouter à la playlist...</option>
+  <% _.each(playlists, function(playlist) { %>
+    <option value="<%= playlist.id %>"><%= playlist.name %></option>
+  <% }) %>
+</select>

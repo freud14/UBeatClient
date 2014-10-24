@@ -3,8 +3,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'views/playlistchoice',
   'text!templates/track.html',
-], function($, _, Backbone, trackTemplate){
+], function($, _, Backbone, PlaylistChoiceView, trackTemplate) {
   var TrackView = Backbone.View.extend({
     tagName: 'tr',
     initialize: function(options) {
@@ -12,12 +13,13 @@ define([
 
       var self = this;
 
+      this.playlistCollection = options.playlistCollection;
+
       this.eventBus = options.eventBus;
 
       this.eventBus.bind("songChanged", this.songChanged, this);
     },
     render: function() {
-
       var data = {track: this.model.toJSON()};
       data.track.trackTimeString = this.formatTime(data.track.trackTimeMillis / 1000);
       var compiledTemplate = _.template( trackTemplate, data );
@@ -25,6 +27,13 @@ define([
       this.$el.html( compiledTemplate );
       this.$el.find('.play').show();
       this.$el.find('.stop').hide();
+
+      this.$el.find('.playlistchoice-column').html(new PlaylistChoiceView({
+        collection: this.playlistCollection,
+        model: this.model,
+        eventBus : this.eventBus,
+      }).render().el);
+
       return this;
     },
     formatTime: function(seconds) {
