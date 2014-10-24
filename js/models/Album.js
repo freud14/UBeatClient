@@ -1,11 +1,12 @@
-// Filename: views/album
+
 define([
   'jquery',
   'underscore',
   'backbone',
-], function($, _, Backbone){
+  'config',
+], function($, _, Backbone, config){
   Album = Backbone.Model.extend({
-    urlRoot: 'https://ubeat.herokuapp.com/unsecure/albums',
+    urlRoot: config.API_URL + 'albums',
 
     parse: function(response) {
       return response.results[0];

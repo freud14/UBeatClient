@@ -13,6 +13,8 @@ define([
       var self = this;
 
       this.eventBus = options.eventBus;
+
+      this.eventBus.bind("songChanged", this.songChanged, this);
     },
     render: function() {
 
@@ -21,6 +23,8 @@ define([
       var compiledTemplate = _.template( trackTemplate, data );
 
       this.$el.html( compiledTemplate );
+      this.$el.find('.play').show();
+      this.$el.find('.stop').hide();
       return this;
     },
     formatTime: function(seconds) {
@@ -31,11 +35,23 @@ define([
     },
 
     events: {
-      "click .fa-play": "play"
+      "click .play": "play",
+      "click .stop": "stop",
     },
 
     play: function() {
       this.eventBus.trigger("playSong", this.model.toJSON());
+      this.$el.find('.play').hide();
+      this.$el.find('.stop').show();
+    },
+    stop: function() {
+      this.eventBus.trigger("stopSong", this.model.toJSON());
+      this.$el.find('.play').show();
+      this.$el.find('.stop').hide();
+    },
+    songChanged: function() {
+      this.$el.find('.play').show();
+      this.$el.find('.stop').hide();
     },
   });
 

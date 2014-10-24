@@ -1,24 +1,16 @@
-// Filename: views/album
+
 define([
   'jquery',
   'underscore',
   'backbone',
 ], function($, _, Backbone){
   Track = Backbone.Model.extend({
-  });
-
-  TrackCollection = Backbone.Collection.extend({
-    model : Track,
-    initialize: function(options) {
-      this.id = options.id;
+    save: function(options) {
+      if(!options.playlistId)
+        throw "You must pass a playlistId field in the options for saving this collection.";
+      options = _.defaults((options || {}), {url: config.API_URL + 'playlists/' + options.playlistId + '/tracks'});
+      return Backbone.Collection.prototype.fetch.create(this, options);
     },
-    url: function() {
-      return 'https://ubeat.herokuapp.com/unsecure/albums/' + this.id + '/tracks';
-    },
-    parse: function(response) {
-      return response.results;
-    }
   });
-
-  return TrackCollection;
+  return Track;
 });

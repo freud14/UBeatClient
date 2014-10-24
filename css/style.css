@@ -251,3 +251,7 @@ ul.alert-dropdown {
 .menu-text {
   display: inline;
 }
+
+.play-column {
+  text-align:center;
+}
