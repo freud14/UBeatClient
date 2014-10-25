@@ -1,6 +1,6 @@
 
 define([], function(){
   return {
-    API_URL: 'https://ubeat.herokuapp.com/unsecure/',
+    API_URL: 'https://ubeat.herokuapp.com/',
   }
 });

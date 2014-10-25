@@ -4,6 +4,7 @@
 require.config({
   paths: {
     jquery: 'libs/jquery/jquery',
+    'jquery.cookie': 'libs/plugins/jquery.cookie',
     underscore: 'libs/underscore/underscore',
     backbone: 'libs/backbone/backbone'
   },
@@ -16,7 +17,10 @@ require.config({
     },
     underscore: {
       exports: '_'
-    }
+    },
+    'jquery.cookie': {
+        deps: ['jquery']
+    },
   }
 });
 

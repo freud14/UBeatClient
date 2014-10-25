@@ -4,32 +4,78 @@ define([
   'backbone',
   'views/index',
   'views/album',
-  'views/artist'
-], function($, _, Backbone, IndexView, AlbumView, ArtistView) {
+  'views/artist',
+  'views/login',
+  'views/menu',
+  'jquery.cookie'
+], function($, _, Backbone, IndexView, AlbumView, ArtistView, LoginView, MenuView) {
   var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'index',
       'album': 'album',
-      'artist': 'artist'
+      'artist': 'artist',
+      'login': 'login',
     },
+
+    initialize: function(options) {
+      this.navigationEventBus = options.navigationEventBus;
+    },
+
     index: function() {
       var indexView = new IndexView();
       indexView.render();
+      this.navigationEventBus.trigger('navigation', 'index');
     },
     album: function() {
       var albumView = new AlbumView({id : 579147674});
       albumView.render();
+      this.navigationEventBus.trigger('navigation', 'album');
     },
     artist: function() {
       var artistView = new ArtistView();
       artistView.render();
-    }
+      this.navigationEventBus.trigger('navigation', 'artist');
+    },
+    login: function() {
+      var loginView = new LoginView({
+        navigationEventBus : this.navigationEventBus,
+      });
+      loginView.render();
+      this.navigationEventBus.trigger('navigation', 'login');
+    },
   });
 
   var initialize = function() {
-    var app_router = new AppRouter;
+    var navigationEventBus = _.extend({}, Backbone.Events);
+    var menuView = new MenuView({
+      navigationEventBus : navigationEventBus,
+    });
+    menuView.render();
+
+    window.app_router = new AppRouter({
+      navigationEventBus : navigationEventBus,
+    });
+    var token = $.cookie('token');
+    if(token) {
+      $.ajaxSetup({
+        headers: { "Authorization": token },
+      });
+      navigationEventBus.trigger('login');
+    }
+
+    $.ajaxSetup({
+      cache: false,
+      statusCode: {
+        401: function () {
+          navigationEventBus.trigger('logout', {});
+          if(Backbone.history.fragment != 'login') {
+            window.app_router.navigate('#login', {trigger: true});
+          }
+        }
+      }
+    });
+
     Backbone.history.start({root: '#'});
-    app_router.navigate('#', {trigger: true});
   };
   return {
     initialize: initialize

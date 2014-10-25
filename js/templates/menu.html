@@ -1,0 +1,62 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">UBeat Application</a>
+  </div>
+
+  <ul class="nav navbar-right top-nav">
+    <li class="dropdown" id="login-menu">
+      <a href="#login">Se connecter</a>
+    </li>
+    <li class="dropdown" id="user-menu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-user"></i> <span id="user-name"></span> <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="#"><i class="fa fa-fw fa-user"></i> Profil</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-fw fa-gear"></i> Paramètres</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="#" id="logout-action"><i class="fa fa-fw fa-power-off"></i> Déconnexion</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <form action="" class="navbar-form navbar-right" name="search-form">
+      <div class="input-group">
+        <input type="Search" placeholder="Rechercher..." class="form-control" id="search-field"/>
+        <div class="input-group-btn">
+          <button class="btn btn-default" id="search-button" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <ul class="nav navbar-nav side-nav" id="menu">
+      <li id="index" class="active">
+        <a href="#"><i class="fa fa-fw fa-dashboard"></i> <div class="hidden-sm menu-text">Accueil</div></a>
+      </li>
+      <li id="file">
+        <a href="#"><i class="fa fa-fw fa-th-list"></i> <div class="hidden-sm menu-text">Ma file d'attente</div></a>
+      </li>
+      <li id="album">
+        <a href="#album"><i class="fa fa-fw fa-folder"></i> <div class="hidden-sm menu-text">Albums</div></a>
+      </li>
+      <li id="artist">
+        <a href="#artist"><i class="fa fa-fw fa-star"></i> <div class="hidden-sm menu-text">Artiste</div></a>
+      </li>
+    </ul>
+  </div>
+</nav>
