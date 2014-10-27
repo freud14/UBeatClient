@@ -6,6 +6,14 @@
   <div class="row">
     <div class="col-lg-12">
 
+      <div class="newList-input">
+        <form name="newPlaylistForm" action="playlist.js" method="post">
+          <!--  onsubmit="return validateForm()" -->
+          <input type="text" name="playlistName" />
+          <button type="submit" class="btn btn-primary"><i class="fa fa-check-circle"></i></button>
+        </form>
+      </div>
+
       <div class="playlists-list">
         <div class="table-responsive">
           <table class="table table-bordered table-hover">
@@ -17,7 +25,7 @@
               </tr>
             </thead>
             <tbody id="playlists-table">
-              <!-- Here, we put the track list.-->
+            
             </tbody>
           </table>
         </div>
