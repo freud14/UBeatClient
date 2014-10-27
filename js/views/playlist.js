@@ -31,10 +31,12 @@ define([
     render: function() {
       var self = this;
 
-      var data = {playlist : this.playlistCollection.toJSON()}; // pas bon
+      var data = {playlist : this.playlistCollection.toJSON()};
+      console.log(data);
+
       var compiledTemplate = _.template( playlistTemplate, data );
       this.$el.html( compiledTemplate );
-      console.log(data);
+      
 
       /*this.$el.find('.playlists-list').html(new PlaylistChoiceView({
         collection: this.playlistCollection,
