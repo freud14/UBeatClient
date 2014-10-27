@@ -6,15 +6,17 @@ define([
   'views/album',
   'views/artist',
   'views/login',
+  'views/playlist',
   'views/menu',
   'jquery.cookie'
-], function($, _, Backbone, IndexView, AlbumView, ArtistView, LoginView, MenuView) {
+], function($, _, Backbone, IndexView, AlbumView, ArtistView, LoginView, PlaylistView, MenuView) {
   var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'index',
       'album': 'album',
       'artist': 'artist',
       'login': 'login',
+      'playlist': 'playlist',
     },
 
     initialize: function(options) {
@@ -35,6 +37,11 @@ define([
       var artistView = new ArtistView();
       artistView.render();
       this.navigationEventBus.trigger('navigation', 'artist');
+    },
+    playlist: function() {
+      var playlistView = new PlaylistView();
+      playlistView.render();
+      this.navigationEventBus.trigger('navigation', 'playlist');
     },
     login: function() {
       var loginView = new LoginView({
