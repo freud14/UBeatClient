@@ -26,13 +26,11 @@ define([
       return this;
     },
     removePlaylist: function() {
-      if (confirm ('Etes vous sur de vouloir supprimer cet element ?')) {
-        this.model.destroy();
-        $(this.el).remove();
-      }
+      this.model.destroy();
+      $(this.el).remove();
     },
     editPlaylist: function() {
-      //playlist.save();
+      console.log("entree mode edition");
     },
   });
 
