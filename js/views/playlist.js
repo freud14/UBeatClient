@@ -51,10 +51,10 @@ define([
       'submit form[name="new-playlist-form"]': 'addPlaylist',
     },
 
-    addPlaylist: function() {
+    addPlaylist: function(event) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      //Pour eviter la soumission double d'u formulaire
+      //Pour eviter la soumission double d'un formulaire
 
       var self = this;
       var form = $(event.target);
