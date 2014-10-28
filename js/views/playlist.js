@@ -4,9 +4,9 @@ define([
   'backbone',
   'models/Playlist',
   'models/PlaylistCollection',
-  'views/playlist',
+  'views/playlistitem',
   'text!templates/playlist.html',
-], function($, _, Backbone, Playlist, PlaylistCollection, PlaylistView, playlistTemplate){
+], function($, _, Backbone, Playlist, PlaylistCollection, PlaylistItemView, playlistTemplate){
   var PlaylistView = Backbone.View.extend({
     el: $('#page-wrapper'),
     initialize: function(options) {
@@ -32,42 +32,53 @@ define([
       var self = this;
 
       var data = {playlist : this.playlistCollection.toJSON()};
-      console.log(data);
-
       var compiledTemplate = _.template( playlistTemplate, data );
       this.$el.html( compiledTemplate );
-      
-
-      /*this.$el.find('.playlists-list').html(new PlaylistChoiceView({
-        collection: this.playlistCollection,
-        eventBus : this.playlistChoiceEventBus,
-      }).render().el);*/
 
       var playlistTable = this.$el.find('#playlists-table');
       playlistTable.empty();
       this.playlistCollection.each(function(playlist, index, context) {
-        playlistTable.append(new PlaylistView({
+        playlistTable.append(new PlaylistItemView({
           model: playlist,
-          playlistCollection: self.playlistCollection,
           eventBus : self.trackEventBus
         }).render().el);
       });
 
       return this;
     },
-    addPlaylist: function(playlist) {
-      
+
+    events: {
+      'submit form[name="new-playlist-form"]': 'addPlaylist',
+    },
+
+    addPlaylist: function() {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      //Pour eviter la soumission double d'u formulaire
+
+      var self = this;
+      var form = $(event.target);
+      //Attention au nommage du champ , doit correspondre an model
+      var newPlaylist = new Playlist({
+        name: form.find('input[name="playlist-name"]').val(),
+      });
+
+      newPlaylist.save({}, {
+        success: function(data) {
+          //dans cette fonction interne le this est pas dans le scope
+          self.playlistCollection.fetch();
+        }
+      });
+    },
+    removePlaylist: function() {
       //playlist.save();
     },
-    removePlaylist: function(playlist) {
+    showPlaylist: function() {
       //playlist.save();
     },
-    showPlaylist: function(playlist) {
+    editPlaylist: function() {
       //playlist.save();
-    },
-    editPlaylist: function(playlist) {
-      //playlist.save();
-    },
+    }
    /* addAlbumToPlaylist: function(playlist, test) {
       playlist.set('tracks', playlist.get('tracks').concat(this.trackCollection.toJSON()));
       playlist.save();
