@@ -9,6 +9,13 @@ define([
     initialize: function(options) {
       _.bindAll(this, 'render');
     },
+
+    events: {
+      'click button.delete' : 'removePlaylist',
+      'click button.edit' : 'editPlaylist',
+    },
+
+    
     render: function() {
       var self = this;
 
@@ -17,7 +24,16 @@ define([
       this.$el.html( compiledTemplate );
 
       return this;
-    }
+    },
+    removePlaylist: function() {
+      if (confirm ('Etes vous sur de vouloir supprimer cet element ?')) {
+        this.model.destroy();
+        $(this.el).remove();
+      }
+    },
+    editPlaylist: function() {
+      //playlist.save();
+    },
   });
 
   return PlaylistItemView;

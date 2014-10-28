@@ -70,12 +70,6 @@ define([
         }
       });
     },
-    removePlaylist: function() {
-      //playlist.save();
-    },
-    showPlaylist: function() {
-      //playlist.save();
-    },
     editPlaylist: function() {
       //playlist.save();
     }
