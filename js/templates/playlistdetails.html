@@ -1,0 +1,21 @@
+<h3><%= playlist.name %></h3>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="play-column">Jouer</th>
+        <th>Titre</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="playlists-table">
+      <% 
+        _.each(playlist.tracks, function(track) { %>
+            <td class="play-column"><i class="fa fa-w fa-play play" /><i class="fa fa-w fa-stop stop" /></td>
+            <td><%= track.trackName %> - <%= track.trackTimeString %></td>
+            <td><button class="delete btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+       <% })
+      %>
+    </tbody>
+  </table>
+</div>

@@ -69,14 +69,7 @@ define([
           self.playlistCollection.fetch();
         }
       });
-    },
-    editPlaylist: function() {
-      //playlist.save();
     }
-   /* addAlbumToPlaylist: function(playlist, test) {
-      playlist.set('tracks', playlist.get('tracks').concat(this.trackCollection.toJSON()));
-      playlist.save();
-    },*/
   });
 
   return PlaylistView;

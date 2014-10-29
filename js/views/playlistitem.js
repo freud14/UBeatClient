@@ -31,6 +31,7 @@ define([
     },
     editPlaylist: function() {
       console.log("entree mode edition");
+      //Ici charger le template de plailist details et taper sur un autre fichier js du coup ?
     },
   });
 
