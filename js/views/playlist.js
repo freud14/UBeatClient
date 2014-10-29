@@ -5,8 +5,9 @@ define([
   'models/Playlist',
   'models/PlaylistCollection',
   'views/playlistitem',
+  'views/playlistdetails',
   'text!templates/playlist.html',
-], function($, _, Backbone, Playlist, PlaylistCollection, PlaylistItemView, playlistTemplate){
+], function($, _, Backbone, Playlist, PlaylistCollection, PlaylistItemView, PlaylistDetailsView, playlistTemplate){
   var PlaylistView = Backbone.View.extend({
     el: $('#page-wrapper'),
     initialize: function(options) {
@@ -49,6 +50,7 @@ define([
 
     events: {
       'submit form[name="new-playlist-form"]': 'addPlaylist',
+      'click button.edit' : 'editPlaylist',
     },
 
     addPlaylist: function(event) {
@@ -69,7 +71,21 @@ define([
           self.playlistCollection.fetch();
         }
       });
-    }
+    },
+    editPlaylist: function() {
+      console.log("EDITION playlist : " + "qdsfs");
+      //Ici charger le template de plailist details et taper sur un autre fichier js du coup ?
+
+      //Il faut récupérer l'ID de la playlist et l'envoyer a la vue details
+
+      var playlistBody = this.$el.find('#playlist-body');
+      playlistBody.append(new PlaylistDetailsView({
+        model: playlist,
+
+      }).render().el);
+
+    },
+
   });
 
   return PlaylistView;

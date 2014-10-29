@@ -12,9 +12,7 @@ define([
 
     events: {
       'click button.delete' : 'removePlaylist',
-      'click button.edit' : 'editPlaylist',
     },
-
     
     render: function() {
       var self = this;
@@ -28,10 +26,6 @@ define([
     removePlaylist: function() {
       this.model.destroy();
       $(this.el).remove();
-    },
-    editPlaylist: function() {
-      console.log("entree mode edition");
-      //Ici charger le template de plailist details et taper sur un autre fichier js du coup ?
     },
   });
 
