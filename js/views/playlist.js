@@ -49,7 +49,6 @@ define([
 
     events: {
       'submit form[name="new-playlist-form"]': 'addPlaylist',
-      'click button.edit' : 'editPlaylist',
     },
 
     addPlaylist: function(event) {

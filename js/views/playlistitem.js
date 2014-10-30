@@ -13,6 +13,7 @@ define([
 
     events: {
       'click button.delete' : 'removePlaylist',
+      'click button.edit' : 'editPlaylist',
     },
     
     render: function() {
@@ -33,7 +34,6 @@ define([
 
       var playlistBody = this.$el.find('#playlist-body');
 
-      //
       playlistBody.append(new PlaylistDetailsView({
         model: playlist,
       }).render().el);
