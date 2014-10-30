@@ -5,9 +5,8 @@ define([
   'models/Playlist',
   'models/PlaylistCollection',
   'views/playlistitem',
-  'views/playlistdetails',
   'text!templates/playlist.html',
-], function($, _, Backbone, Playlist, PlaylistCollection, PlaylistItemView, PlaylistDetailsView, playlistTemplate){
+], function($, _, Backbone, Playlist, PlaylistCollection, PlaylistItemView, playlistTemplate){
   var PlaylistView = Backbone.View.extend({
     el: $('#page-wrapper'),
     initialize: function(options) {
