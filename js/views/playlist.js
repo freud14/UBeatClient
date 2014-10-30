@@ -67,23 +67,10 @@ define([
 
       newPlaylist.save({}, {
         success: function(data) {
-          //dans cette fonction interne le this est pas dans le scope
+          //dans cette fonction interne le this est pas dans le scope d'ou l'utilisation du self
           self.playlistCollection.fetch();
         }
       });
-    },
-    editPlaylist: function() {
-      console.log("EDITION playlist : " + "qdsfs");
-      //Ici charger le template de plailist details et taper sur un autre fichier js du coup ?
-
-      //Il faut récupérer l'ID de la playlist et l'envoyer a la vue details
-
-      var playlistBody = this.$el.find('#playlist-body');
-      playlistBody.append(new PlaylistDetailsView({
-        model: playlist,
-
-      }).render().el);
-
     },
 
   });
