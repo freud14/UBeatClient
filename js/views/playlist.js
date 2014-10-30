@@ -15,16 +15,6 @@ define([
 
       var self = this;
 
-      this.trackEventBus = _.extend({}, Backbone.Events);
-      this.trackEventBus.bind("addPlaylist", this.addPlaylist, this);
-      this.trackEventBus.bind("removePlaylist", this.removePlaylist, this);
-      this.trackEventBus.bind("showPlaylist", this.showPlaylist, this);
-      this.trackEventBus.bind("editPlaylist", this.editPlaylist, this);
-
-      this.playlistModel = new Playlist();
-      this.playlistModel.bind('change add remove sync', this.render, this);
-      this.playlistModel.fetch();
-
       this.playlistCollection = new PlaylistCollection();
       this.playlistCollection.bind('change add remove sync', this.render, this);
       this.playlistCollection.fetch();
@@ -36,21 +26,12 @@ define([
       var compiledTemplate = _.template( playlistTemplate, data );
       this.$el.html( compiledTemplate );
 
-      var playlistTable = this.$el.find('#playlists-table');
-      playlistTable.empty();
-      this.playlistCollection.each(function(playlist, index, context) {
-        playlistTable.append(new PlaylistItemView({
-          model: playlist,
-          eventBus : self.trackEventBus
-        }).render().el);
-      });
-
       return this;
     },
 
     events: {
       'submit form[name="new-playlist-form"]': 'addPlaylist',
-      'click button.edit' : 'editPlaylist',
+      'click .edit' : 'editPlaylist',
     },
 
     addPlaylist: function(event) {
@@ -72,8 +53,9 @@ define([
         }
       });
     },
-    editPlaylist: function() {
-      var playlistId =   $(this).find('button.edit').attr('data-url');
+    editPlaylist: function(event) {
+      alert($(event.currentTarget).attr('url'));
+      playlistId = $(event.currentTarget).attr('url');
       console.log("EDITION playlist : " + playlistId);
 
       var playlistBody = this.$el.find('#playlist-body');
