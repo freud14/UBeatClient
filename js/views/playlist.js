@@ -54,7 +54,7 @@ define([
     },
     editPlaylist: function(event) {
       alert($(event.currentTarget).data('url'));
-      playlistId = $(event.currentTarget).attr('url');
+      playlistId = $(event.currentTarget).data('url');
       console.log("EDITION playlist : " + playlistId);
 
       var playlistBody = this.$el.find('#playlist-body');
