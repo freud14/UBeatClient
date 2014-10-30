@@ -5,8 +5,9 @@ define([
   'models/Playlist',
   'models/PlaylistCollection',
   'views/playlistitem',
+  'views/playlistdetails',
   'text!templates/playlist.html',
-], function($, _, Backbone, Playlist, PlaylistCollection, PlaylistItemView, playlistTemplate){
+], function($, _, Backbone, Playlist, PlaylistCollection, PlaylistItemView, PlaylistDetailsView, playlistTemplate){
   var PlaylistView = Backbone.View.extend({
     el: $('#page-wrapper'),
     initialize: function(options) {
@@ -49,6 +50,7 @@ define([
 
     events: {
       'submit form[name="new-playlist-form"]': 'addPlaylist',
+      'click button.edit' : 'editPlaylist',
     },
 
     addPlaylist: function(event) {
@@ -69,6 +71,19 @@ define([
           self.playlistCollection.fetch();
         }
       });
+    },
+    editPlaylist: function() {
+      var playlistId =   $(this).find('button.edit').attr('data-url');
+      console.log("EDITION playlist : " + playlistId);
+
+      var playlistBody = this.$el.find('#playlist-body');
+
+      /*Quand on a l'id => get de la liste de lecture que l'on enverra a la vue details*/
+
+      playlistBody.append(new PlaylistDetailsView({
+        model: playlist,
+      }).render().el);
+
     },
 
   });

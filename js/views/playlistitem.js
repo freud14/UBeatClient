@@ -2,9 +2,8 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/playlistdetails',
   'text!templates/playlistitem.html',
-], function($, _, Backbone, playlistItemTemplate, PlaylistDetailsView){
+], function($, _, Backbone, playlistItemTemplate){
   var PlaylistItemView = Backbone.View.extend({
     tagName: 'tr', //prend un tr au lieu d'une div pour cercler le template
     initialize: function(options) {
@@ -13,7 +12,6 @@ define([
 
     events: {
       'click button.delete' : 'removePlaylist',
-      'click button.edit' : 'editPlaylist',
     },
     
     render: function() {
@@ -28,16 +26,6 @@ define([
     removePlaylist: function() {
       this.model.destroy();
       $(this.el).remove();
-    },
-    editPlaylist: function() {
-      console.log("EDITION playlist : " + "qdsfs");
-
-      var playlistBody = this.$el.find('#playlist-body');
-
-      playlistBody.append(new PlaylistDetailsView({
-        model: playlist,
-      }).render().el);
-
     },
   });
 
