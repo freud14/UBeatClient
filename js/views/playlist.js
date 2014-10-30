@@ -53,7 +53,7 @@ define([
       });
     },
     editPlaylist: function(event) {
-      alert($(event.currentTarget).attr('url'));
+      alert($(event.currentTarget).data('url'));
       playlistId = $(event.currentTarget).attr('url');
       console.log("EDITION playlist : " + playlistId);
 
