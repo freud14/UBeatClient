@@ -47,7 +47,6 @@ define([
     },
     playlistdetails: function(id) {
       var playlistdetailsView = new PlaylistdetailsView({id : id});
-      playlistdetailsView.render(id);
     },
     login: function() {
       var loginView = new LoginView({

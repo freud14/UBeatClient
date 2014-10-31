@@ -51,7 +51,6 @@ define([
       });
     },
     editPlaylist: function(event) {
-      alert($(event.currentTarget).data('url'));
       playlistId = $(event.currentTarget).data('url');
       console.log("EDITION playlist : " + playlistId);
       this.undelegateEvents();
