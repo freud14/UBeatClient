@@ -7,6 +7,7 @@ define([
   'text!templates/playlistdetails.html',
 ], function($, _, Backbone, Playlist, PlaylistCollection, playlistDetailsTemplate){
   var PlaylistDetailsView = Backbone.View.extend({
+    el: $('#page-wrapper'),
     initialize: function(options) {
       _.bindAll(this, 'render');
       this.playlistCollection = new PlaylistCollection();
