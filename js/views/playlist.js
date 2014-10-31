@@ -9,10 +9,8 @@ define([
 ], function($, _, Backbone, Playlist, PlaylistCollection, PlaylistDetailsView, playlistTemplate){
   var PlaylistView = Backbone.View.extend({
     el: $('#page-wrapper'),
-    initialize: function(options) {
+    initialize: function(id) {
       _.bindAll(this, 'render');
-
-      var self = this;
 
       this.playlistCollection = new PlaylistCollection();
       this.playlistCollection.bind('change add remove sync', this.render, this);
