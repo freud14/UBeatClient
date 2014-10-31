@@ -22,7 +22,6 @@ define([
       alert(id);
       itemModel = this.playlistCollection._byId[id];
 
-      console.log(itemModel.attributes.tracks);
 
 
       var data = {playlist : itemModel};
