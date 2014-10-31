@@ -19,8 +19,12 @@ define([
     },
     
     render: function(id) {
+      alert(id);
       itemModel = this.playlistCollection._byId[id];
+
       console.log(itemModel.attributes.tracks);
+
+
       var data = {playlist : itemModel};
       var compiledTemplate = _.template( playlistDetailsTemplate, data );
       this.$el.html( compiledTemplate );
