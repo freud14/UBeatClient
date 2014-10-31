@@ -10,6 +10,7 @@ define([
     el: $('#page-wrapper'),
     initialize: function(options) {
       _.bindAll(this, 'render');
+
       this.playlistCollection = new PlaylistCollection();
       var self = this;
       this.playlistCollection.fetch().done(function(){
@@ -23,8 +24,8 @@ define([
     },
     
     render: function(id) {
-      itemModel = this.playlistCollection._byId[id];
-      var data = {playlist : itemModel};
+      this.itemModel = this.playlistCollection._byId[id];
+      var data = {playlist : this.itemModel};
       var compiledTemplate = _.template( playlistDetailsTemplate, data );
       this.$el.html( compiledTemplate );
 
@@ -42,7 +43,8 @@ define([
       var form = $(event.target);
 
       var newPlaylistName = form.find('input').val();
-      /*Comment changer la du coup le nom de la playlist en cours*/
+      this.itemModel.set({name : newPlaylistName});
+      this.itemModel.save();
     },
   });
 
