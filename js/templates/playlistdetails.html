@@ -1,8 +1,10 @@
 
 <div class="table-responsive">
   <h3>
-    <input type="textarea" value="<%= playlist.attributes.name %>"></input>
-    <button class="edit-playlist-name btn btn-sm btn-success"><i class="fa fa-check"></i></button>
+    <form name="change-playlist-name-form">
+      <input type="textarea" value="<%= playlist.attributes.name %>"></input>
+      <button type="submit" class="edit-playlist-name btn btn-sm btn-success"><i class="fa fa-check"></i></button>
+    </form>
   </h3>
   
 
@@ -22,7 +24,7 @@
               </td>
               <td><%= track.artistName %> - <%= track.trackName %> - <%= track.collectionName %></td>
               <td>
-                <button class="delete-track btn btn-sm btn-danger">
+                <button class="delete-track btn btn-sm btn-danger" data-id="<%= track.trackId %>">
                   <i class="fa fa-times"></i>
                 </button>
               </td>

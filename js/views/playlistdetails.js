@@ -11,15 +11,15 @@ define([
     initialize: function(options) {
       _.bindAll(this, 'render');
       this.playlistCollection = new PlaylistCollection();
-     var self = this;
-     this.playlistCollection.fetch().done(function(){
+      var self = this;
+      this.playlistCollection.fetch().done(function(){
         self.render(options.id);
       });
     },
 
     events: {
       'click button.delete-track' : 'removeTrackOnPlaylist',
-      'click button.edit-playlist-name' : 'editPlaylistName',
+      'submit form[name="change-playlist-name-form"]': 'editPlaylistName',
     },
     
     render: function(id) {
@@ -30,11 +30,19 @@ define([
 
       return this;
     },
-    removeTrackOnPlaylist: function() {
-      //TODO
+    removeTrackOnPlaylist: function(event) {
+      var trackId = $(event.currentTarget).data('id');
+      console.log(trackId);
     },
-    editPlaylistName: function() {
-      //TODO
+    editPlaylistName: function(event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      var self = this;
+      var form = $(event.target);
+
+      var newPlaylistName = form.find('input').val();
+      /*Comment changer la du coup le nom de la playlist en cours*/
     },
   });
 
