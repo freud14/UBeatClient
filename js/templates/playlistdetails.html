@@ -12,10 +12,12 @@
     </thead>
     <tbody id="playlists-table">
       <% 
-        _.each(playlist.tracks, function(track) { %>
-            <td class="play-column"><i class="fa fa-w fa-play play" /><i class="fa fa-w fa-stop stop" /></td>
-            <td><%= track.trackName %> - <%= track.trackTimeString %></td>
-            <td><button class="delete btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+        _.each(playlist.attributes.tracks, function(track) { %>
+          <tr>
+              <td class="play-column"><i class="fa fa-w fa-play play" /><i class="fa fa-w fa-stop stop" /></td>
+              <td><%= track.trackName %> - <%= track.trackTimeString %></td>
+              <td><button class="delete btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+          </tr>
        <% })
       %>
     </tbody>
