@@ -12,6 +12,10 @@ define([
     initialize: function(id) {
       _.bindAll(this, 'render');
 
+      this.playlistModel = new Playlist();
+      this.playlistModel.bind('change add destroy sync', this.render, this);
+      this.playlistModel.fetch();
+
       this.playlistCollection = new PlaylistCollection();
       this.playlistCollection.bind('change add remove sync', this.render, this);
       this.playlistCollection.fetch();
@@ -29,6 +33,7 @@ define([
     events: {
       'submit form[name="new-playlist-form"]': 'addPlaylist',
       'click .edit' : 'editPlaylist',
+      'click button.delete' : 'removePlaylist',
     },
 
     addPlaylist: function(event) {
@@ -51,12 +56,16 @@ define([
       });
     },
     editPlaylist: function(event) {
-      playlistId = $(event.currentTarget).data('url');
+      playlistId = $(event.currentTarget).data('id');
       console.log("EDITION playlist : " + playlistId);
       this.undelegateEvents();
       window.location.hash = "#playlistdetails/" + playlistId;
-
-
+    },
+    removePlaylist: function(event) {
+      playlistId = $(event.currentTarget).data('id');
+      console.log("SUPPRESSION playlist : " + playlistId);
+      playlistToDestroy = this.playlistCollection.get(playlistId);
+      playlistToDestroy.destroy();
     },
 
   });
