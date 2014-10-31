@@ -14,11 +14,12 @@ define([
      var self = this;
      this.playlistCollection.fetch().done(function(){
         self.render(options.id);
-      });      
+      });
     },
 
     events: {
-      'click button.delete' : 'removeTrackOnPlaylist',
+      'click button.delete-track' : 'removeTrackOnPlaylist',
+      'click button.edit-playlist-name' : 'editPlaylistName',
     },
     
     render: function(id) {
