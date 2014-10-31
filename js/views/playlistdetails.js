@@ -3,21 +3,28 @@ define([
   'underscore',
   'backbone',
   'models/Playlist',
+  'models/PlaylistCollection',
   'text!templates/playlistdetails.html',
-], function($, _, Backbone, Playlist, playlistDetailsTemplate){
+], function($, _, Backbone, Playlist, PlaylistCollection, playlistDetailsTemplate){
   var PlaylistDetailsView = Backbone.View.extend({
     initialize: function(options) {
       _.bindAll(this, 'render');
+      this.playlistCollection = new PlaylistCollection();
+      this.playlistCollection.fetch();
     },
 
     events: {
       'click button.delete' : 'removeTrackOnPlaylist',
     },
     
-    render: function() {
-      var self = this;
+    render: function(id) {
+      alert(id);
+      itemModel = this.playlistCollection._byId[id];
 
-      var data = {playlist : this.model.toJSON()};
+      console.log(itemModel.attributes.name);
+
+
+      var data = {playlist : itemModel};
       var compiledTemplate = _.template( playlistDetailsTemplate, data );
       this.$el.html( compiledTemplate );
 

@@ -56,14 +56,9 @@ define([
       alert($(event.currentTarget).data('url'));
       playlistId = $(event.currentTarget).data('url');
       console.log("EDITION playlist : " + playlistId);
+      this.undelegateEvents();
+      window.location.hash = "#playlistdetails/" + playlistId;
 
-      var playlistBody = this.$el.find('#playlist-body');
-
-      /*Quand on a l'id => get de la liste de lecture que l'on enverra a la vue details*/
-
-      playlistBody.append(new PlaylistDetailsView({
-        model: playlist,
-      }).render().el);
 
     },
 
