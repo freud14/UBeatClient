@@ -32,8 +32,11 @@ define([
       return this;
     },
     removeTrackOnPlaylist: function(event) {
-      var trackId = $(event.currentTarget).data('id');
-      console.log(trackId);
+      var trackIdToRemove = $(event.currentTarget).data('id');
+      /*
+      Ici quelle est la ligne avec destroy ou remove a mettre pour ne supprimer que ce track
+      */
+      this.itemModel.deleteTrack(trackIdToRemove);
     },
     editPlaylistName: function(event) {
       event.preventDefault();
