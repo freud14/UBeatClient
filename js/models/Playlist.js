@@ -8,12 +8,14 @@ define([
 ], function($, _, Backbone, Track, config) {
   Playlist = Backbone.Model.extend({
     urlRoot: config.API_URL + 'playlists/',
-    deleteTrack: function(trackIdToRemove) {
-      console.log(trackIdToRemove);
-      var allTracks = this.get('tracks');
-      console.log(allTracks);
-      //On a toutes les tracks de la playlist il suffit de supprimer 
-      //celui dont on à l'id en parametre
+
+    destroy: function(options) {
+      if(options.trackId){
+        
+        options = _.defaults((options || {}), {url: config.API_URL + 'playlists/' + this.id + '/tracks/' + options.trackId});
+        console.log(options);
+      }
+      return Backbone.Model.prototype.destroy.call(this, options);
     },
   });
   return Playlist;
