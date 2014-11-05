@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li><a href="index.html">Accueil</a></li>
+    <li class="active">Mes listes de lecture</li>
+  </ol>
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="playlist-body">
+        
+        <div class="newList-input">
+          <form name="new-playlist-form">
+            <input type="text" name="playlist-name" />
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check-circle"></i></button>
+          </form>
+        </div>
+
+        <div class="playlists-list">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Number of songs</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="playlists-table">
+                <% _.each(playlist, function(item) { %>
+                  <tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.tracks.length %></td>
+                    <td>
+                      <button class="delete btn btn-sm btn-danger" data-id="<%= item.id %>"><i class="fa fa-times"></i></button>
+                      <button class="edit btn btn-sm btn-success" data-id="<%= item.id %>"><i class="fa fa-pencil"></i></button>
+                    </td>
+                  </tr>
+                <% }); %> 
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

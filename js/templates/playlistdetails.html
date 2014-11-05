@@ -1,0 +1,35 @@
+
+<div class="table-responsive">
+  <h3>
+    <form name="change-playlist-name-form">
+      <input type="textarea" value="<%= playlist.attributes.name %>"></input>
+      <button type="submit" class="edit-playlist-name btn btn-sm btn-success"><i class="fa fa-check"></i></button>
+    </form>
+  </h3>
+  
+
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="play-column">Jouer</th>
+        <th>Artiste - Titre - Album</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="playlists-table">
+      <% _.each(playlist.attributes.tracks, function(track) { %>
+          <tr>
+              <td class="play-column">
+                <i class="fa fa-w fa-play play" /><i class="fa fa-w fa-stop stop" />
+              </td>
+              <td><%= track.artistName %> - <%= track.trackName %> - <%= track.collectionName %></td>
+              <td>
+                <button class="delete-track btn btn-sm btn-danger" data-id="<%= track.trackId %>">
+                  <i class="fa fa-times"></i>
+                </button>
+              </td>
+          </tr>
+       <% }); %>
+    </tbody>
+  </table>
+</div>
