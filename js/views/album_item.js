@@ -9,10 +9,10 @@ define([
     initialize: function(options) {
       _.bindAll(this, 'render');
 
-      this.album = options.album;
+      this.albumModel = options.album;
     },
     render: function(){
-      var data = {album : this.album.toJSON()};
+      var data = {album : this.albumModel.toJSON()};
       var compiledTemplate = _.template( albumItemTemplate, data );
       this.$el.html( compiledTemplate );
 
