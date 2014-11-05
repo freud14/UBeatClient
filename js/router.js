@@ -36,7 +36,7 @@ define([
       this.navigationEventBus.trigger('navigation', 'album');
     },
     artist: function() {
-      var artistView = new ArtistView();
+      var artistView = new ArtistView({id : 3996865});
       artistView.render();
       this.navigationEventBus.trigger('navigation', 'artist');
     },

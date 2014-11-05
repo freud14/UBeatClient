@@ -3,11 +3,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'models/Track',
+  'models/Album',
   'config',
 ], function($, _, Backbone, Track, config){
   AlbumCollection = Backbone.Collection.extend({
-    model : Track,
+    model : Album,
     initialize: function(options) {
       this.id = options.id;
     },
@@ -16,7 +16,7 @@ define([
     },
 
     fetch: function(options) {
-      options = _.defaults((options || {}), {url: config.API_URL + 'artist/' + this.id + '/albums'});
+      options = _.defaults((options || {}), {url: config.API_URL + 'artists/' + this.id + '/albums'});
       return Backbone.Collection.prototype.fetch.call(this, options);
     },
   });

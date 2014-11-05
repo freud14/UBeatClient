@@ -235,15 +235,15 @@ ul.alert-dropdown {
   margin-top: 15px;
 }
 
-.albums-list {
+#albums-list {
   margin-top: 20px;
 }
 
-.albums-list div{
+#albums-list div{
   text-align: center;
 }
 
-.albums-list .img-responsive {
+#albums-list .img-responsive {
   width: 100px;
   margin: auto;
 }
