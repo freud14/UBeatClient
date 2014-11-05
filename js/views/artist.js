@@ -13,16 +13,16 @@ define([
     initialize: function(options) {
       _.bindAll(this, 'render');
 
-      this.artist = new Artist({id : options.id});
-      this.artist.bind('change', this.render, this);
-      this.artist.fetch();
+      this.artistModel = new Artist({id : options.id});
+      this.artistModel.bind('change', this.render, this);
+      this.artistModel.fetch();
 
       this.albumCollection = new AlbumCollection({id : options.id});
       this.albumCollection.bind('change add remove sync', this.render, this);
       this.albumCollection.fetch();
     },
     render: function(){
-      var data = {artist : this.artist.toJSON()};
+      var data = {artist : this.artistModel.toJSON()};
       var compiledTemplate = _.template( artistTemplate, data );
       this.$el.html( compiledTemplate );
 
