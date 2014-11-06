@@ -15,7 +15,9 @@ define([
     routes: {
       '': 'index',
       'album': 'album',
+      'album/:id': 'album',
       'artist': 'artist',
+      'artist/:id': 'artist',
       'login': 'login',
       'playlist': 'playlist',
       'playlistdetails/:id': 'playlistdetails'
@@ -30,13 +32,13 @@ define([
       indexView.render();
       this.navigationEventBus.trigger('navigation', 'index');
     },
-    album: function() {
-      var albumView = new AlbumView({id : 579147674});
+    album: function(id) {
+      var albumView = new AlbumView({id : id ? id : 579147674});
       albumView.render();
       this.navigationEventBus.trigger('navigation', 'album');
     },
-    artist: function() {
-      var artistView = new ArtistView({id : 3996865});
+    artist: function(id) {
+      var artistView = new ArtistView({id : id ? id : 3996865});
       artistView.render();
       this.navigationEventBus.trigger('navigation', 'artist');
     },
