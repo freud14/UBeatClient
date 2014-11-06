@@ -4,11 +4,16 @@
 require.config({
   paths: {
     jquery: 'libs/jquery/jquery',
+    bootstrap: 'libs/bootstrap',
     'jquery.cookie': 'libs/plugins/jquery.cookie',
+    'bootstrap-notify': 'libs/plugins/bootstrap-notify',
     underscore: 'libs/underscore/underscore',
     backbone: 'libs/backbone/backbone'
   },
   shim: {
+    bootstrap: {
+      deps: ['jquery']
+    },
     backbone: {
       //These script dependencies should be loaded before loading backbone.js
       deps: ['underscore', 'jquery'],
@@ -19,7 +24,10 @@ require.config({
       exports: '_'
     },
     'jquery.cookie': {
-        deps: ['jquery']
+      deps: ['jquery']
+    },
+    'bootstrap-notify': {
+      deps: ['jquery', 'bootstrap']
     },
   }
 });

@@ -9,6 +9,7 @@ define([
   'views/albumtrack',
   'views/playlistchoice',
   'text!templates/album.html',
+  'bootstrap-notify'
 ], function($, _, Backbone, Album, TrackCollection, PlaylistCollection, AlbumTrackView, PlaylistChoiceView, albumTemplate){
   var AlbumView = Backbone.View.extend({
     el: $('#page-wrapper'),
@@ -88,11 +89,21 @@ define([
     },
 
     addTrackToPlaylist: function(playlist, track) {
-      track.save({}, {playlistId : playlist.get('id')});
+      track.save({}, {playlistId : playlist.get('id')}).done(function() {
+        $('.top-right').notify({
+          message: { text: 'La chanson a été ajoutée à la liste de lecture avec succès!' },
+          fadeOut: { enabled: true, delay: 5000 }
+        }).show();
+      });
     },
     addAlbumToPlaylist: function(playlist, test) {
       playlist.set('tracks', playlist.get('tracks').concat(this.trackCollection.toJSON()));
-      playlist.save();
+      playlist.save().done(function() {
+        $('.top-right').notify({
+          message: { text: "L'album a été ajouté à la liste de lecture avec succès!" },
+          fadeOut: { enabled: true, delay: 5000 }
+        }).show();
+      });
     },
   });
 
