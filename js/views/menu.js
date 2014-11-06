@@ -45,6 +45,7 @@ define([
     logout: function(event) {
       event.preventDefault();
 
+      //On logout, the token is removed and http header too.
       $.removeCookie('token');
       $.ajaxSetup({
         headers: { 'Authorization': '' }

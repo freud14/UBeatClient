@@ -60,7 +60,10 @@ define([
   });
 
   var initialize = function() {
+    // This event bus is used to communicate login and logout status of the
+    //user between the router, the login view and the menu view.
     var navigationEventBus = _.extend({}, Backbone.Events);
+
     var menuView = new MenuView({
       navigationEventBus : navigationEventBus,
     });
@@ -69,6 +72,8 @@ define([
     window.app_router = new AppRouter({
       navigationEventBus : navigationEventBus,
     });
+
+    //Check of the token cookie if present.
     var token = $.cookie('token');
     if(token) {
       $.ajaxSetup({
@@ -81,6 +86,8 @@ define([
       cache: false,
       statusCode: {
         401: function () {
+          //If we receive a 401 unauthorized and we are not in the login page,
+          //we redirect the user to the login page.
           navigationEventBus.trigger('logout', {});
           if(Backbone.history.fragment != 'login') {
             window.app_router.navigate('#login', {trigger: true});

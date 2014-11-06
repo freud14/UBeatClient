@@ -16,12 +16,14 @@ define([
     },
 
     sync : function(method, model, options) {
-        if (method == "update" || method == "create") {
-            options = options ? _.clone(options) : {};
-            options['data'] = $.param(this['attributes']);
-        }
-        var arguments = [method, model, options];
-        return Backbone.sync.apply(this, arguments);
+      //when sending login information, it is send in the classical query
+      //parameter format.
+      if (method == "update" || method == "create") {
+          options = options ? _.clone(options) : {};
+          options['data'] = $.param(this['attributes']);
+      }
+      var arguments = [method, model, options];
+      return Backbone.sync.apply(this, arguments);
     },
   });
   return Login;

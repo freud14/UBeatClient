@@ -90,7 +90,6 @@ define([
 
     addTrackToPlaylist: function(playlist, track) {
       track.save({}, {playlistId : playlist.get('id')}).done(function() {
-
         $('.top-center').notify({
           message: { text: 'La chanson a été ajoutée à la liste de lecture avec succès!' },
           fadeOut: { enabled: true, delay: 5000 }

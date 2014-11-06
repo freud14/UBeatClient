@@ -44,6 +44,8 @@ define([
       });
       login.save({}, {
         success: function(data) {
+          //If we successfully login, we save the token in a cookie and we send
+          //it in every ajax request.
           var token = data.get('token');
 
           $.ajaxSetup({
