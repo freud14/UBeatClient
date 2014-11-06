@@ -6,10 +6,10 @@ define([
   'models/Album',
   'models/TrackCollection',
   'models/PlaylistCollection',
-  'views/track',
+  'views/albumtrack',
   'views/playlistchoice',
   'text!templates/album.html',
-], function($, _, Backbone, Album, TrackCollection, PlaylistCollection, TrackView, PlaylistChoiceView, albumTemplate){
+], function($, _, Backbone, Album, TrackCollection, PlaylistCollection, AlbumTrackView, PlaylistChoiceView, albumTemplate){
   var AlbumView = Backbone.View.extend({
     el: $('#page-wrapper'),
     initialize: function(options) {
@@ -54,7 +54,7 @@ define([
       var trackList = this.$el.find('#track-list');
       trackList.empty();
       this.trackCollection.each(function(track, index, context) {
-        trackList.append(new TrackView({
+        trackList.append(new AlbumTrackView({
           model: track,
           playlistCollection: self.playlistCollection,
           eventBus : self.trackEventBus

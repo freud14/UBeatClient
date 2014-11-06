@@ -4,9 +4,9 @@ define([
   'underscore',
   'backbone',
   'views/playlistchoice',
-  'text!templates/track.html',
+  'text!templates/albumtrack.html',
 ], function($, _, Backbone, PlaylistChoiceView, trackTemplate) {
-  var TrackView = Backbone.View.extend({
+  var AlbumTrackView = Backbone.View.extend({
     tagName: 'tr',
     initialize: function(options) {
       _.bindAll(this, 'render');
@@ -64,5 +64,5 @@ define([
     },
   });
 
-  return TrackView;
+  return AlbumTrackView;
 });
