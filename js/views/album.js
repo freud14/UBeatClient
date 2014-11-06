@@ -75,11 +75,15 @@ define([
     },
 
     playSong: function(track) {
+      var self = this;
       if(this.currentSong) {
         this.currentSong.pause();
         this.trackEventBus.trigger('songChanged');
       }
       this.currentSong = new Audio(track.previewUrl);
+      this.currentSong.addEventListener("ended", function() {
+        self.trackEventBus.trigger('songChanged');
+      }, true);
       this.currentSong.play();
     },
     stopSong: function(track) {
