@@ -25,6 +25,7 @@ define([
     
     render: function(id) {
       this.itemModel = this.playlistCollection._byId[id];
+      this.playlistId = id;
       var data = {playlist : this.itemModel};
       var compiledTemplate = _.template( playlistDetailsTemplate, data );
       this.$el.html( compiledTemplate );
@@ -34,6 +35,11 @@ define([
     removeTrackOnPlaylist: function(event) {
       var trackIdToRemove = $(event.currentTarget).data('id');
       this.itemModel.destroy({trackId : trackIdToRemove});
+
+      var self = this;
+      this.playlistCollection.fetch().done(function(){
+        self.render(self.playlistId);
+      });
     },
     editPlaylistName: function(event) {
       event.preventDefault();
