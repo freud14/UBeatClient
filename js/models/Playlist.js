@@ -10,7 +10,7 @@ define([
     urlRoot: config.API_URL + 'playlists/',
 
     destroy: function(options) {
-      if('undefined' !== options.trackId){
+      if(options.trackId){
         options = _.defaults((options || {}), {url: config.API_URL + '/playlists/' + this.id + '/tracks/' + options.trackId});
         console.log(options);
       }
