@@ -65,7 +65,7 @@ define([
       playlistId = $(event.currentTarget).data('id');
       console.log("SUPPRESSION playlist : " + playlistId);
       playlistToDestroy = this.playlistCollection.get(playlistId);
-      playlistToDestroy.destroy();
+      playlistToDestroy.destroy({});
     },
 
   });
