@@ -32,6 +32,14 @@ define([
         albumsList.append(new AlbumItemView({
           album: album,
         }).render().el);
+
+        //Insert clearfix. See http://getbootstrap.com/css/#grid-responsive-resets
+        if ((index - 2) % 3 == 0) {
+          albumsList.append("<div class=\"clearfix visible-xs\"></div>")
+        }
+        if ((index - 3) % 4 == 0) {
+          albumsList.append("<div class=\"clearfix hidden-xs\"></div>")
+        }
       });
 
       return this;
