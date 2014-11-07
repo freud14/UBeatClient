@@ -49,6 +49,7 @@ define([
     },
     playlistdetails: function(id) {
       var playlistdetailsView = new PlaylistdetailsView({id : id});
+      this.navigationEventBus.trigger('navigation', 'playlist');
     },
     login: function() {
       var loginView = new LoginView({
