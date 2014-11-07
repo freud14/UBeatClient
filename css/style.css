@@ -260,6 +260,7 @@ ul.alert-dropdown {
   padding: 15px;
   margin: 0 auto;
 }
+
 .form-login .form-login-heading {
   margin-bottom: 10px;
 }
@@ -267,6 +268,7 @@ ul.alert-dropdown {
 .form-login .checkbox {
   font-weight: normal;
 }
+
 .form-login .form-control {
   position: relative;
   height: auto;
@@ -276,16 +278,23 @@ ul.alert-dropdown {
   padding: 10px;
   font-size: 16px;
 }
+
 .form-login .form-control:focus {
   z-index: 2;
 }
+
 .form-login input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
 .form-login input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.newList-input {
+  margin-bottom: 15px;
 }
