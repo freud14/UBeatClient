@@ -36,7 +36,9 @@ define([
       var trackIdToRemove = $(event.currentTarget).data('id');
       var self = this;
       this.itemModel.destroy({trackId : trackIdToRemove}).done(function(){
-        self.render(self.playlistId);
+        this.playlistCollection.fetch().done(function(){
+          self.render(self.playlistId);
+        });
       });
     },
     editPlaylistName: function(event) {
