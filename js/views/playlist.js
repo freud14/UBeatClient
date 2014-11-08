@@ -50,7 +50,10 @@ define([
 
       newPlaylist.save({}, {
         success: function(data) {
-          //dans cette fonction interne le this est pas dans le scope d'ou l'utilisation du self
+          $('.top-center').notify({
+            message: { text: 'Playlist créée avec succès !' },
+            fadeOut: { enabled: true, delay: 1000 }
+          }).show();
           self.playlistCollection.fetch();
         }
       });
@@ -65,7 +68,13 @@ define([
       playlistId = $(event.currentTarget).data('id');
       console.log("SUPPRESSION playlist : " + playlistId);
       playlistToDestroy = this.playlistCollection.get(playlistId);
-      playlistToDestroy.destroy({});
+      playlistToDestroy.destroy({}).done(function(){
+        $('.top-center').notify({
+          message: { text: 'Playlist supprimé' },
+          fadeOut: { enabled: true, delay: 1000 },
+          type: 'danger',
+        }).show();
+      });
     },
 
   });
