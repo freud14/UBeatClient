@@ -48,9 +48,24 @@ define([
       var self = this;
       var form = $(event.target);
 
-      var newPlaylistName = form.find('input').val();
-      this.itemModel.set({name : newPlaylistName});
-      this.itemModel.save();
+      if (form.find('input').val().length >= 2) {
+        var newPlaylistName = form.find('input').val();
+        this.itemModel.set({name : newPlaylistName});
+        this.itemModel.save({}, {
+          success: function(data) {
+            $('.top-center').notify({
+              message: { text: 'Nom de la playlist modifié avec succès !' },
+              fadeOut: { enabled: true, delay: 1000 }
+            }).show();
+          }
+        });
+      } else {
+        $('.top-center').notify({
+          message: { text: "Le nom de votre playlist doit contenir au minimum 2 caractères" },
+          fadeOut: { enabled: true, delay: 1000 },
+          type: 'danger',
+        }).show();
+      }
     },
   });
 

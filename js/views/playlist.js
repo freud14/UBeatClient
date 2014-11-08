@@ -43,19 +43,28 @@ define([
       var self = this;
       var form = $(event.target);
 
-      var newPlaylist = new Playlist({
-        name: form.find('input[name="playlist-name"]').val(),
-      });
+      if (form.find('input[name="playlist-name"]').val().length >= 2) {
+        var newPlaylist = new Playlist({
+          name: form.find('input[name="playlist-name"]').val(),
+        });
 
-      newPlaylist.save({}, {
-        success: function(data) {
-          $('.top-center').notify({
-            message: { text: 'Playlist créée avec succès !' },
-            fadeOut: { enabled: true, delay: 1000 }
-          }).show();
-          self.playlistCollection.fetch();
-        }
-      });
+        newPlaylist.save({}, {
+          success: function(data) {
+            $('.top-center').notify({
+              message: { text: 'Playlist créée avec succès !' },
+              fadeOut: { enabled: true, delay: 1000 }
+            }).show();
+            self.playlistCollection.fetch();
+          }
+        });
+      } else {
+        $('.top-center').notify({
+          message: { text: "Le nom de votre playlist doit contenir au minimum 2 caractères" },
+          fadeOut: { enabled: true, delay: 1000 },
+          type: 'danger',
+        }).show();
+      }
+     
     },
     editPlaylist: function(event) {
       playlistId = $(event.currentTarget).data('id');
