@@ -42,6 +42,7 @@ define([
 
       var self = this;
       var form = $(event.target);
+
       var newPlaylist = new Playlist({
         name: form.find('input[name="playlist-name"]').val(),
       });
