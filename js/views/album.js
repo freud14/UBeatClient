@@ -96,12 +96,12 @@ define([
       track.save({}, {playlistId : playlist.get('id')}).done(function() {
         $('.top-center').notify({
           message: { text: 'La chanson a été ajoutée à la liste de lecture avec succès!' },
-          fadeOut: { enabled: true, delay: 5000 }
+          fadeOut: { enabled: true, delay: 1000 }
         }).show();
       }).error(function() {
         $('.top-center').notify({
           message: { text: "Une erreur s'est produite lors de cette opération." },
-          fadeOut: { enabled: true, delay: 5000 },
+          fadeOut: { enabled: true, delay: 1000 },
           type: 'danger'
         }).show();
       });
@@ -112,12 +112,12 @@ define([
       playlist.save().done(function() {
         $('.top-center').notify({
           message: { text: "L'album a été ajouté à la liste de lecture avec succès!" },
-          fadeOut: { enabled: true, delay: 5000 }
+          fadeOut: { enabled: true, delay: 1000 }
         }).show();
       }).error(function() {
         $('.top-center').notify({
           message: { text: "Une erreur s'est produite lors de cette opération." },
-          fadeOut: { enabled: true, delay: 5000 },
+          fadeOut: { enabled: true, delay: 1000 },
           type: 'danger'
         }).show();
       });

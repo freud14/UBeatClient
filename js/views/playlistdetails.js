@@ -35,10 +35,10 @@ define([
     removeTrackOnPlaylist: function(event) {
       var trackIdToRemove = $(event.currentTarget).data('id');
       var self = this;
-      this.itemModel.destroy({trackId : trackIdToRemove}).done(function(){
-        this.playlistCollection.fetch().done(function(){
-          self.render(self.playlistId);
-        });
+      this.itemModel.destroy({trackId : trackIdToRemove});
+      /* Probleme sur le success de destroy => Jamais atteint */
+      this.playlistCollection.fetch().done(function(){
+        self.render(self.playlistId);
       });
     },
     editPlaylistName: function(event) {
