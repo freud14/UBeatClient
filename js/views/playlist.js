@@ -39,11 +39,9 @@ define([
     addPlaylist: function(event) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      //Pour eviter la soumission double d'un formulaire
 
       var self = this;
       var form = $(event.target);
-      //Attention au nommage du champ , doit correspondre an model
       var newPlaylist = new Playlist({
         name: form.find('input[name="playlist-name"]').val(),
       });
