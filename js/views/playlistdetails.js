@@ -35,11 +35,24 @@ define([
     removeTrackOnPlaylist: function(event) {
       var trackIdToRemove = $(event.currentTarget).data('id');
       var self = this;
-      this.itemModel.destroy({trackId : trackIdToRemove});
-      /* Probleme sur le success de destroy => Jamais atteint 
-      Aucun JSOn ou text n'est retourné de la pars du serveur */
-      this.playlistCollection.fetch().done(function(){
-        self.render(self.playlistId);
+      this.itemModel.destroy({trackId : trackIdToRemove}, {
+        success: function(data){
+          this.playlistCollection.fetch().done(function(){
+            self.render(self.playlistId);
+          });
+
+          $('.top-center').notify({
+            message: { text: "Track supprimée" },
+            fadeOut: { enabled: true, delay: 1000 },
+          }).show();
+        },
+        error: function(data){
+          $('.top-center').notify({
+            message: { text: "Suppression non effectuée" },
+            fadeOut: { enabled: true, delay: 1000 },
+            type: 'danger',
+          }).show();
+        }
       });
     },
     editPlaylistName: function(event) {
