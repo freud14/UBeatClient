@@ -68,13 +68,11 @@ define([
     },
     editPlaylist: function(event) {
       playlistId = $(event.currentTarget).data('id');
-      console.log("EDITION playlist : " + playlistId);
       this.undelegateEvents();
       window.location.hash = "#playlistdetails/" + playlistId;
     },
     removePlaylist: function(event) {
       playlistId = $(event.currentTarget).data('id');
-      console.log("SUPPRESSION playlist : " + playlistId);
       playlistToDestroy = this.playlistCollection.get(playlistId);
       playlistToDestroy.destroy({}).done(function(){
         $('.top-center').notify({

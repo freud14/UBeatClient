@@ -36,7 +36,8 @@ define([
       var trackIdToRemove = $(event.currentTarget).data('id');
       var self = this;
       this.itemModel.destroy({trackId : trackIdToRemove});
-      /* Probleme sur le success de destroy => Jamais atteint */
+      /* Probleme sur le success de destroy => Jamais atteint 
+      Aucun JSOn ou text n'est retourné de la pars du serveur */
       this.playlistCollection.fetch().done(function(){
         self.render(self.playlistId);
       });
