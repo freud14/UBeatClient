@@ -22,7 +22,7 @@ define([
       'click button.delete-track' : 'removeTrackOnPlaylist',
       'submit form[name="change-playlist-name-form"]': 'editPlaylistName',
     },
-    
+
     render: function(id) {
       this.itemModel = this.playlistCollection._byId[id];
       this.playlistId = id;
@@ -35,24 +35,21 @@ define([
     removeTrackOnPlaylist: function(event) {
       var trackIdToRemove = $(event.currentTarget).data('id');
       var self = this;
-      this.itemModel.destroy({trackId : trackIdToRemove}, {
-        success: function(data){
-          this.playlistCollection.fetch().done(function(){
-            self.render(self.playlistId);
-          });
+      this.itemModel.destroy({trackId : trackIdToRemove}).done(function(data){
+        self.playlistCollection.fetch().done(function(){
+          self.render(self.playlistId);
+        });
 
-          $('.top-center').notify({
-            message: { text: "Track supprimée" },
-            fadeOut: { enabled: true, delay: 1000 },
-          }).show();
-        },
-        error: function(data){
-          $('.top-center').notify({
-            message: { text: "Suppression non effectuée" },
-            fadeOut: { enabled: true, delay: 1000 },
-            type: 'danger',
-          }).show();
-        }
+        $('.top-center').notify({
+          message: { text: "Track supprimée" },
+          fadeOut: { enabled: true, delay: 1000 },
+        }).show();
+      }).error(function(data) {
+        $('.top-center').notify({
+          message: { text: "Suppression non effectuée" },
+          fadeOut: { enabled: true, delay: 1000 },
+          type: 'danger',
+        }).show();
       });
     },
     editPlaylistName: function(event) {
