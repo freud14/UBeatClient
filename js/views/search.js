@@ -30,23 +30,18 @@ define([
     search: function(event) {
 
     },
-    albumSearch: function(event) {
-
-    },
-    userSearch: function(event) {
-
-    },
-    artistSearch: function(event) {
-
-    },
-    trackSearch: function(event) {
+    specifiedSearch: function(event) {
 
     },
     followUser: function(event) {
 
     },
     addToPlaylist: function(event) {
-      
+      playlistId = $(event.currentTarget).data('playlistId');
+      playlist = this.playlistCollection.get(playlistId);
+
+      elemType = $(event.currentTarget).data('wrapperType');
+      /* => Suivant le type d'element que c'est nous rajoutons l'album ou la track */
     }
 
   });
