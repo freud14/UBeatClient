@@ -1,25 +1,27 @@
 <div>
-  <div class="input-group">
-    <input type="Search" placeholder="Rechercher..." class="form-control" id="search-field"/>
-    <div class="input-group-btn">
-      <button class="btn btn-default" id="search-button" type="submit">
-        <i class="glyphicon glyphicon-search"></i>
-      </button>
+  <form>
+    <div class="input-group">
+      <input type="Search" placeholder="Rechercher..." class="form-control" id="search-field"/>
+      <div class="input-group-btn">
+        <button class="btn btn-default" id="search-button" type="submit">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
+      </div>
     </div>
-  </div>
-  <input type="radio" name="type" value="artists">Artiste
-  <input type="radio" name="type" value="albums">Album
-  <input type="radio" name="type" value="tracks">Chanson
-  <input type="radio" name="type" value="user">Utilisateur
-  <input type="radio" name="type" value="" checked>Tout
+    <input type="radio" name="type" value="artists">Artiste
+    <input type="radio" name="type" value="albums">Album
+    <input type="radio" name="type" value="tracks">Chanson
+    <input type="radio" name="type" value="user">Utilisateur
+    <input type="radio" name="type" value="" checked>Tout
+  </form>
 </div>
 <div>
-  <% if(typeof results !== 'undefined') { %>
+  <% if (typeof results !== 'undefined') { %>
     <% _.each(results, function(result) { %>
       <% console.log(result) %>
-      <% if(result.wrapperType == "user") { %>
+      <% if (result.wrapperType == "user") { %>
         <div class="search-result search-user"></div>
-      <% } else if(result.wrapperType == "artist") { %>
+      <% } else if (result.wrapperType == "artist") { %>
         <div class="search-result search-artist">
           <div class="search-img search-artist-img">
             <i class="fa fa-microphone"></i>
@@ -28,22 +30,24 @@
             <%= result.artistName %>
           </div>
         </div>
-      <% } else if(result.wrapperType == "collection") { %>
+      <% } else if (result.wrapperType == "collection") { %>
         <div class="search-result search-album">
           <div class="search-img search-album-img">
             <img src="<%= result.artworkUrl100 %>"/>
           </div>
           <div class="search-desc search-album-desc">
-            <%= result.collectionName %>
+            <%= result.collectionName %> - <%= result.artistName %>
           </div>
         </div>
-      <% } else if(result.wrapperType == "track") { %>
+      <% } else if (result.wrapperType == "track") { %>
         <div class="search-result search-track">
           <div class="search-img search-album-img">
             <img src="<%= result.artworkUrl100 %>"/>
           </div>
           <div class="search-desc search-track-desc">
-            <%= result.trackName %>
+            <%= result.trackName %><br />
+            Album: <%= result.collectionName %><br />
+            Artiste: <%= result.artistName %><br />
           </div>
         </div>
       <% } %>
