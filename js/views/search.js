@@ -16,7 +16,9 @@ define([
       });
     },
     render: function() {
-      this.$el.html( searchTemplate );
+      var data = this.searchModel.toJSON();
+      var compiledTemplate = _.template( searchTemplate, data);
+      this.$el.html( compiledTemplate );
       return this;
     },
 
