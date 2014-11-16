@@ -23,12 +23,28 @@ define([
     },
 
     events: {
-
+      'submit form[name="search-form"]': 'search',
     },
 
-
     search: function(event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
 
+      var self = this;
+      var form = $(event.target);
+
+      if (form.find('input[id="search-field"]').val().length >= 1) {
+        var request = form.find('input[id="search-field"]').val();
+        this.searchModel.fetch({request : request}).done(function(){
+          self.render();
+        });
+      } else {
+        $('.top-center').notify({
+          message: { text: "Rentrez au moins une lettre pour effectuer une recherche" },
+          fadeOut: { enabled: true, delay: 1000 },
+          type: 'danger',
+        }).show();
+      }
     },
     specifiedSearch: function(event) {
 

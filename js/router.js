@@ -23,7 +23,8 @@ define([
       'playlist': 'playlist',
       'playlistdetails/:id': 'playlistdetails',
       'search/:q/:type': 'search',
-      'search/:q': 'search'
+      'search/:q': 'search',
+      'search': 'search'
     },
 
     initialize: function(options) {
