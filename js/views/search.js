@@ -35,9 +35,7 @@ define([
 
       if (form.find('input[id="search-field"]').val().length >= 1) {
         var request = form.find('input[id="search-field"]').val();
-        this.searchModel.fetch({request : request}).done(function(){
-          self.render();
-        });
+        window.location.hash = "#search/" + request;
       } else {
         $('.top-center').notify({
           message: { text: "Rentrez au moins une lettre pour effectuer une recherche" },
