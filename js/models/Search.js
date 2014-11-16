@@ -8,7 +8,7 @@ define([
     urlRoot: config.API_URL + 'search',
 
     fetch: function(options) {
-      if(options.searchType){
+      if(typeof options.searchType !== 'undefined'){
         options = _.defaults((options || {}), {url: this.urlRoot + '/' + options.searchType + '?q=' + encodeURIComponent(options.request) });
       } else {
         options = _.defaults((options || {}), {url: this.urlRoot + '?q=' + encodeURIComponent(options.request) });
