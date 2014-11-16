@@ -36,13 +36,14 @@
             <img src="<%= result.artworkUrl100 %>"/>
           </div>
           <div class="search-desc search-album-desc">
-            <%= result.collectionName %> - <%= result.artistName %>
+            <%= result.collectionName %><br />
+            Artiste: <%= result.artistName %><br />
           </div>
         </div>
       <% } else if (result.wrapperType == "track") { %>
         <div class="search-result search-track">
-          <div class="search-img search-album-img">
-            <img src="<%= result.artworkUrl100 %>"/>
+          <div class="search-img search-track-img">
+            <i class="fa fa-music"></i>
           </div>
           <div class="search-desc search-track-desc">
             <%= result.trackName %><br />
