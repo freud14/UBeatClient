@@ -298,3 +298,30 @@ ul.alert-dropdown {
 .newList-input {
   margin-bottom: 15px;
 }
+
+.search-artist-img {
+  font-size: 100px;
+  width: 100px;
+  height: 100px;
+  text-align:center;
+}
+
+.search-img {
+  display: inline-block;
+}
+
+.search-desc {
+  display: inline;
+  vertical-align: top;
+  padding-left:10px;
+}
+
+.search-result {
+  margin: 10px;
+  padding: 10px;
+  background-color: #AAAAAA;
+}
+
+.search-result:hover {
+  background-color: #888888;
+}
