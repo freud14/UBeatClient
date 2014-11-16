@@ -42,6 +42,12 @@ define([
     trackSearch: function(event) {
 
     },
+    followUser: function(event) {
+
+    },
+    addToPlaylist: function(event) {
+      
+    }
 
   });
 
