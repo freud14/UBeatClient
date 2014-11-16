@@ -8,12 +8,12 @@
         </button>
       </div>
     </div>
-    <input type="radio" name="type" value="artists">Artiste
-    <input type="radio" name="type" value="albums">Album
-    <input type="radio" name="type" value="tracks">Chanson
-    <input type="radio" name="type" value="user">Utilisateur
-    <input type="radio" name="type" value="" checked>Tout
   </form>
+  <a class="refineSearch" data-type="artists">Artistes</a>
+  <a class="refineSearch" data-type="albums">Albums</a>
+  <a class="refineSearch" data-type="tracks">Chansons</a>
+  <a class="refineSearch" data-type="users">Utilisateurs</a>
+  <a class="active" data-type="all">Tout</a>
 </div>
 <div>
   <% if (typeof results !== 'undefined') { %>
