@@ -61,7 +61,7 @@ define([
       this.navigationEventBus.trigger('navigation', 'login');
     },
     search: function(q, type) {
-      var searchView = new SearchView();
+      var searchView = new SearchView({request : q, searchType : type});
       searchView.render();
       this.navigationEventBus.trigger('navigation', 'search');
     },

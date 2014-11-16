@@ -2,19 +2,21 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'models/Search',
   'text!templates/search.html',
-], function($, _, Backbone, searchTemplate){
+], function($, _, Backbone, Search, searchTemplate){
   var SearchView = Backbone.View.extend({
     el: $('#page-wrapper'),
-    initialize: function(id) {
+    initialize: function(options) {
       _.bindAll(this, 'render');
-
+      var self = this;
+      this.searchModel = new Search();
+      this.searchModel.fetch(options).done(function(){
+        self.render();
+      });
     },
     render: function() {
-      var self = this;
-
       this.$el.html( searchTemplate );
-
       return this;
     },
 
