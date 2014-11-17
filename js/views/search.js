@@ -33,9 +33,16 @@ define([
       var self = this;
       var form = $(event.target);
 
+      var selectElmt = document.getElementById("type-search");
+      var searchType = selectElmt.options[selectElmt.selectedIndex].value;
+      
       if (form.find('input[id="search-field"]').val().length >= 1) {
         var request = form.find('input[id="search-field"]').val();
-        window.location.hash = "#search/" + request;
+        if (searchType === "") {
+          window.location.hash = "#search/" + request;
+        } else {
+          window.location.hash = "#search/" + request + "/" + searchType;
+        }
       } else {
         $('.top-center').notify({
           message: { text: "Rentrez au moins une lettre pour effectuer une recherche" },
@@ -44,8 +51,10 @@ define([
         }).show();
       }
     },
-    specifiedSearch: function(event) {
-      
+    refineSearch: function(event) {
+      var request = $("input.#search-field").val();
+      var searchType = $(event.currentTarget).data('type');
+      console.log(request + "  type :  " + searchType);
     },
     followUser: function(event) {
 
