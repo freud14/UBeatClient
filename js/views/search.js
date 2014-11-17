@@ -4,13 +4,15 @@ define([
   'backbone',
   'models/Search',
   'models/PlaylistCollection',
+  'models/Track',
+  'models/TrackCollection',
   'views/playlistchoice',
   'text!templates/search.html',
   'text!templates/searchartist.html',
   'text!templates/searchalbum.html',
   'text!templates/searchtrack.html',
   'text!templates/searchuser.html',
-], function($, _, Backbone, Search, PlaylistCollection, PlaylistChoiceView, searchTemplate, searchArtistTemplate, searchAlbumTemplate, searchTrackTemplate, searchUserTemplate) {
+], function($, _, Backbone, Search, PlaylistCollection, Track, TrackCollection, PlaylistChoiceView, searchTemplate, searchArtistTemplate, searchAlbumTemplate, searchTrackTemplate, searchUserTemplate) {
   var SearchView = Backbone.View.extend({
     el: $('#page-wrapper'),
     initialize: function(options) {
@@ -109,13 +111,46 @@ define([
 
     },
     addToPlaylist: function(playlistModel, searchResult) {
-      playlistId = $(event.currentTarget).data('playlistId');
-      playlist = this.playlistCollection.get(playlistId);
+      if (searchResult.wrapperType == 'collection') {
+        this.addAlbumToPlaylist(playlistModel, searchResult);
+      } else if (searchResult.wrapperType == 'track') {
+        this.addTrackToPlaylist(playlistModel, searchResult);
+      }
+    },
+    addAlbumToPlaylist: function(playlistModel, searchResult) {
+      var trackCollection = new TrackCollection({id : searchResult.collectionId});
+      trackCollection.fetch().done(function() {
+        playlistModel.set('tracks', playlistModel.get('tracks').concat(trackCollection.toJSON()));
 
-      elemType = $(event.currentTarget).data('wrapperType');
-      /* => Suivant le type d'element que c'est nous rajoutons l'album ou la track */
-    }
-
+        playlistModel.save().done(function() {
+          $('.top-center').notify({
+            message: { text: "L'album a été ajouté à la liste de lecture avec succès!" },
+            fadeOut: { enabled: true, delay: 1000 }
+          }).show();
+        }).error(function() {
+          $('.top-center').notify({
+            message: { text: "Une erreur s'est produite lors de cette opération." },
+            fadeOut: { enabled: true, delay: 1000 },
+            type: 'danger'
+          }).show();
+        });
+      });
+    },
+    addTrackToPlaylist: function(playlistModel, searchResult) {
+      var track = new Track(searchResult);
+      track.save({}, {playlistId : playlistModel.get('id')}).done(function() {
+        $('.top-center').notify({
+          message: { text: 'La chanson a été ajoutée à la liste de lecture avec succès!' },
+          fadeOut: { enabled: true, delay: 1000 }
+        }).show();
+      }).error(function() {
+        $('.top-center').notify({
+          message: { text: "Une erreur s'est produite lors de cette opération." },
+          fadeOut: { enabled: true, delay: 1000 },
+          type: 'danger'
+        }).show();
+      });
+    },
   });
 
   return SearchView;
