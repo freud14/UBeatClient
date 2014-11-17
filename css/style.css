@@ -335,6 +335,11 @@ ul.alert-dropdown {
   background-color: #888888;
 }
 
+.search-result a, .search-result a:hover {
+  text-decoration: inherit;
+  color: inherit;
+}
+
 .spacer {
   clear: both;
   display:block;

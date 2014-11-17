@@ -106,7 +106,7 @@ define([
         }).show();
       });
     },
-    addAlbumToPlaylist: function(playlist, test) {
+    addAlbumToPlaylist: function(playlist) {
       playlist.set('tracks', playlist.get('tracks').concat(this.trackCollection.toJSON()));
 
       playlist.save().done(function() {
