@@ -45,7 +45,7 @@ define([
       }
     },
     specifiedSearch: function(event) {
-
+      
     },
     followUser: function(event) {
 
