@@ -20,15 +20,24 @@
     <% _.each(results, function(result) { %>
       <% console.log(result) %>
       <% if (result.wrapperType == "user") { %>
-        <div class="search-result search-user"></div>
+        <div class="search-result search-user">
+          <div class="search-img search-user-img">
+            <i class="fa fa-user"></i>
+          </div>
+          <div class="search-desc search-user-desc">
+            <h2><%= result.username %></h2>
+          </div>
+          <div class="spacer"> </div>
+        </div>
       <% } else if (result.wrapperType == "artist") { %>
         <div class="search-result search-artist">
           <div class="search-img search-artist-img">
             <i class="fa fa-microphone"></i>
           </div>
           <div class="search-desc search-artist-desc">
-            <%= result.artistName %>
+            <h2><%= result.artistName %></h2>
           </div>
+          <div class="spacer"> </div>
         </div>
       <% } else if (result.wrapperType == "collection") { %>
         <div class="search-result search-album">
@@ -36,9 +45,10 @@
             <img src="<%= result.artworkUrl100 %>"/>
           </div>
           <div class="search-desc search-album-desc">
-            <%= result.collectionName %><br />
-            Artiste: <%= result.artistName %><br />
+            <h2><%= result.collectionName %></h2>
+            <strong>Artiste:</strong> <%= result.artistName %><br />
           </div>
+          <div class="spacer"> </div>
         </div>
       <% } else if (result.wrapperType == "track") { %>
         <div class="search-result search-track">
@@ -46,10 +56,11 @@
             <i class="fa fa-music"></i>
           </div>
           <div class="search-desc search-track-desc">
-            <%= result.trackName %><br />
-            Album: <%= result.collectionName %><br />
-            Artiste: <%= result.artistName %><br />
+            <h2><%= result.trackName %></h2>
+            <strong>Album:</strong> <%= result.collectionName %><br />
+            <strong>Artiste:</strong> <%= result.artistName %><br />
           </div>
+          <div class="spacer"> </div>
         </div>
       <% } %>
     <% }) %>

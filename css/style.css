@@ -299,21 +299,30 @@ ul.alert-dropdown {
   margin-bottom: 15px;
 }
 
-.search-artist-img, .search-track-img {
-  font-size: 70px;
+.search-img {
   width: 100px;
   height: 100px;
+  margin-right: 10px;
+  display: table-cell;
+}
+
+.search-artist-img, .search-track-img, .search-user-img {
+  font-size: 70px;
   text-align:center;
 }
 
 .search-img {
-  display: inline-block;
+  float:left;
 }
 
 .search-desc {
-  display: inline-block;
   vertical-align: top;
-  padding-left:10px;
+  display: table-cell;
+}
+
+.search-desc h2 {
+  font-size: 20px;
+  margin-top: 0px;
 }
 
 .search-result {
@@ -324,4 +333,9 @@ ul.alert-dropdown {
 
 .search-result:hover {
   background-color: #888888;
+}
+
+.spacer {
+  clear: both;
+  display:block;
 }
