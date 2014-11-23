@@ -39,7 +39,22 @@ define([
     search: function(event) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      return false;
+
+      var self = this;
+      var form = $(event.target);
+
+      console.log(form.find('input[id="search-field"]').val());
+
+      if (form.find('input[id="search-field"]').val().length >= 1) {
+        var request = form.find('input[id="search-field"]').val();
+        window.location.hash = "#search/" + request;
+      } else {
+        $('.top-center').notify({
+          message: { text: "Rentrez au moins une lettre pour effectuer une recherche" },
+          fadeOut: { enabled: true, delay: 1000 },
+          type: 'danger',
+        }).show();
+      }
     },
 
     logout: function(event) {
