@@ -210,12 +210,11 @@ ul.alert-dropdown {
   color: white;
 }
 
-#search-page, #search-field {
+.search-form>#search-field {
   background-color: #333333;
   border-color: #999999;
   color: white;
   height: 35px;
-  margin-top: 20px;
 }
 
 #type-search {
@@ -223,15 +222,13 @@ ul.alert-dropdown {
   border-color: #999999;
   color: white;
   height: 35px;
-  margin-top: 20px;
 }
 
-#search-page, #search-button {
+.search-form>#search-button {
   background-color: #333333;
-  border-color: #999999;
+  border-color: #222222;
   color: white;
   height: 35px;
-  margin-top: 20px;
 }
 
 /* Artist page display */
