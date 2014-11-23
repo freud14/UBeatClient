@@ -1,20 +1,16 @@
 <div>
   <form name="search-form">
-    <div class="input-group">
-      <input type="Search" placeholder="Rechercher..." class="form-control" id="search-field"/>
-      <select id="type-search">
-        <option value="">All</option>
-        <option value="artists">Artistes</option>
-        <option value="albums">Albums</option>
-        <option value="tracks">Chansons</option>
-        <option value="users">Utilisateurs</option>
-      </select>
-      <div class="input-group-btn">
-        <button class="btn btn-default" id="search-button" type="submit">
-          <i class="glyphicon glyphicon-search"></i>
-        </button>
-      </div>
-    </div>
+    <input type="Search" placeholder="Rechercher..." class="form-group col-lg-8" id="search-field"/>
+    <select id="type-search" class="col-lg-3">
+      <option value="">All</option>
+      <option value="artists">Artistes</option>
+      <option value="albums">Albums</option>
+      <option value="tracks">Chansons</option>
+      <option value="users">Utilisateurs</option>
+    </select>
+    <button class="btn btn-default col-lg-1" id="search-button" type="submit">
+      <i class="glyphicon glyphicon-search"></i>
+    </button>
   </form>
 </div>
 <div id="search-results"></div>

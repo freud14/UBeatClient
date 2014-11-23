@@ -195,7 +195,19 @@ ul.alert-dropdown {
 
 /* Search */
 
-#search-field, #search-button {
+#search-field {
+  background-color: #333333;
+  border-color: #999999;
+  color: white;
+}
+
+#type-search {
+  background-color: #333333;
+  border-color: #999999;
+  color: white;
+}
+
+#search-button {
   background-color: #333333;
   border-color: #999999;
   color: white;
