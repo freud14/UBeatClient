@@ -194,14 +194,11 @@ ul.alert-dropdown {
 }
 
 /* Search */
-
-#search-field {
-  background-color: #333333;
-  border-color: #999999;
-  color: white;
+#search-results {
+  padding-top: 50px;
 }
 
-#type-search {
+#search-field {
   background-color: #333333;
   border-color: #999999;
   color: white;
@@ -211,6 +208,30 @@ ul.alert-dropdown {
   background-color: #333333;
   border-color: #999999;
   color: white;
+}
+
+#search-page, #search-field {
+  background-color: #333333;
+  border-color: #999999;
+  color: white;
+  height: 35px;
+  margin-top: 20px;
+}
+
+#type-search {
+  background-color: #333333;
+  border-color: #999999;
+  color: white;
+  height: 35px;
+  margin-top: 20px;
+}
+
+#search-page, #search-button {
+  background-color: #333333;
+  border-color: #999999;
+  color: white;
+  height: 35px;
+  margin-top: 20px;
 }
 
 /* Artist page display */
