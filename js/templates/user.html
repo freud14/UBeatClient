@@ -1,6 +1,13 @@
       <div class="container-fluid">
-				<h1><%= user.name %></h1>
-				<h6>Courriel : <%= user.email %></h6>
+                <div id="info-user">
+				  <h1><%= user.name %></h1>
+				  <h6>Courriel : <%= user.email %></h6>
+                </div>
+                <% if (user.id !== myId) { %>
+                  <div id="to-follow">
+                    <a id="follow-button" data-id="<%= user.id %>"><img src="resources/img/follow-logo.png"></a>
+                  </div>
+                <% } %>
 				<div id="my-playlists">
 					<div class="playlists-list">
 							<h4>Listes de lecture</h4>
@@ -20,9 +27,11 @@
 		                    <td><%= item.name %></td>
 		                    <td><%= item.tracks.length %></td>
 		                    <td>
+                            <% if (user.id === myId) { %>
 		                      <button class="delete btn btn-sm btn-danger" data-id="<%= item.id %>"><i class="fa fa-times"></i></button>
-		                      <button class="edit btn btn-sm btn-success" data-id="<%= item.id %>"><i class="fa fa-eye"></i></button>
-		                    </td>
+                            <% } %>
+                              <button class="edit btn btn-sm btn-success" data-id="<%= item.id %>"><i class="fa fa-eye"></i></button>
+                            </td>
 		                  </tr>
 		                <%  } %>
 		                <% }); %> 
@@ -31,4 +40,30 @@
 		          </div>
 	        </div>
 				</div>
+          <div id="my-follow">
+              <div class="my-follow-list">
+                  <h4>Following</h4>
+                  <div class="table-responsive">
+                      <table class="table table-bordered table-hover">
+                          <thead>
+                          <tr>
+                              <th>Name</th>
+                          </tr>
+                          </thead>
+                          <tbody id="follow-table">
+                          <% _.each(user.following, function(follow) { %>
+                          <tr id="following-<%= follow.id %>">
+                              <td>
+                                <%= follow.name %>
+                                <% if (user.id === myId) { %>
+                                <button class="delete btn btn-sm btn-danger" data-id="<%= follow.id %>"><i class="fa fa-times"></i></button>
+                                <% } %>
+                              </td>
+                          </tr>
+                          <% }); %>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
       </div>
