@@ -320,3 +320,7 @@ button.delete,button.edit {
   float: right;
   margin: 0px 2px;
 }
+
+a {
+  cursor: pointer;
+}

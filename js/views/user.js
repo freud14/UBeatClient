@@ -46,6 +46,7 @@ define([
     events: {
       'click a#follow-button' : 'addFollow',
       'click button.delete' : 'removeFollow',
+      'click tr.row-following' : 'viewFollowing'
     },
 
       //Ne marche pas, utilisé pour follow un user
@@ -55,12 +56,8 @@ define([
           followId = $(event.currentTarget).data('id');
           console.log(followId);
           var followingUser = new User({id : followId});
-          this.userModel.save({
-              data: JSON.stringify({ id: followId}),
-              type: "POST",
-              contentType: 'application/json'
-              },
-              {
+          this.userModel.save({},{
+              type:"POST",
               success: function(data) {
                   $('.top-center').notify({
                       message: { text: 'Follow ajouté avec succès !' },
@@ -81,6 +78,12 @@ define([
               }).show();
               $("#following-"+followId).hide();
           });
+      },
+
+      viewFollowing: function(event) {
+          followingId = $(event.currentTarget).data('id');
+          this.undelegateEvents();
+          window.location.hash = "#user/" + followingId;
       },
   });
 

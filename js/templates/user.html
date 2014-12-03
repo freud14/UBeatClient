@@ -52,7 +52,7 @@
                           </thead>
                           <tbody id="follow-table">
                           <% _.each(user.following, function(follow) { %>
-                          <tr id="following-<%= follow.id %>">
+                          <tr id="following-<%= follow.id %>" data-id="<%= follow.id %>" class="row-following">
                               <td>
                                 <%= follow.name %>
                                 <% if (user.id === myId) { %>
