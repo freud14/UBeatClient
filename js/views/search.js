@@ -43,9 +43,6 @@ define([
         _.each(data.results, function(result) {
           var compiledUserTemplate;
           switch(result.wrapperType) {
-            case 'user':
-              compiledSearchItemTemplate = _.template(searchUserTemplate, result);
-              break;
             case 'artist':
               compiledSearchItemTemplate = _.template(searchArtistTemplate, result);
               break;
@@ -54,6 +51,9 @@ define([
               break;
             case 'track':
               compiledSearchItemTemplate = _.template(searchTrackTemplate, result);
+              break;
+            default:
+              compiledSearchItemTemplate = _.template(searchUserTemplate, result);
               break;
           }
 
