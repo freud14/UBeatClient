@@ -9,9 +9,10 @@ define([
   'views/playlist',
   'views/playlistdetails',
   'views/menu',
+  'views/search',
   'views/user',
   'jquery.cookie'
-], function($, _, Backbone, IndexView, AlbumView, ArtistView, LoginView, PlaylistView, PlaylistdetailsView, MenuView, UserView) {
+], function($, _, Backbone, IndexView, AlbumView, ArtistView, LoginView, PlaylistView, PlaylistdetailsView, MenuView, SearchView,  UserView) {
   var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'index',
@@ -22,9 +23,10 @@ define([
       'login': 'login',
       'playlist': 'playlist',
       'playlistdetails/:id': 'playlistdetails',
-      'user/:id': 'user',
+      'search/:q/:type': 'search',
       'search/:q': 'search',
-      'search': 'search'
+      'search': 'search',
+      'user/:id': 'user'
     },
 
     initialize: function(options) {
@@ -61,6 +63,16 @@ define([
       });
       loginView.render();
       this.navigationEventBus.trigger('navigation', 'login');
+    },
+    search: function(q, type) {
+      var searchView;
+      if (type) {
+        searchView = new SearchView({request : q, searchType : type});
+      } else {
+        searchView = new SearchView({request : q});
+      }
+      searchView.render();
+      this.navigationEventBus.trigger('navigation', 'search');
     },
     user: function(id) {
       var userView = new UserView({id : id});
