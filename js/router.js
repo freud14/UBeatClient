@@ -23,6 +23,8 @@ define([
       'playlist': 'playlist',
       'playlistdetails/:id': 'playlistdetails',
       'user/:id': 'user',
+      'search/:q': 'search',
+      'search': 'search'
     },
 
     initialize: function(options) {
@@ -64,6 +66,16 @@ define([
       var userView = new UserView({id : id});
       userView.render();
       this.navigationEventBus.trigger('navigation', 'user');
+    },
+    search: function(q, type) {
+      var searchView;
+      if (type) {
+        searchView = new SearchView({request : q, searchType : type});
+      } else {
+        searchView = new SearchView({request : q});
+      }
+      searchView.render();
+      this.navigationEventBus.trigger('navigation', 'search');
     },
   });
 
