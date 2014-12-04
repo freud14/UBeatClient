@@ -374,3 +374,29 @@ ul.alert-dropdown {
   clear: both;
   display:block;
 }
+
+div#info-user {
+  display: inline-table;
+}
+
+#to-follow {
+  display: inline-table;
+  margin-left: 5%;
+}
+
+#to-follow img {
+  width: 100px;
+}
+
+#to-follow img:hover {
+  cursor: pointer;
+}
+
+button.delete,button.edit {
+  float: right;
+  margin: 0px 2px;
+}
+
+a {
+  cursor: pointer;
+}

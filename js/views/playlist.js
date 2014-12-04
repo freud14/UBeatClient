@@ -4,9 +4,10 @@ define([
   'backbone',
   'models/Playlist',
   'models/PlaylistCollection',
+  'models/TokenInfo',
   'views/playlistdetails',
   'text!templates/playlist.html',
-], function($, _, Backbone, Playlist, PlaylistCollection, PlaylistDetailsView, playlistTemplate){
+], function($, _, Backbone, Playlist, PlaylistCollection, TokenInfo, PlaylistDetailsView, playlistTemplate){
   var PlaylistView = Backbone.View.extend({
     el: $('#page-wrapper'),
     initialize: function(id) {
@@ -19,11 +20,14 @@ define([
       this.playlistCollection = new PlaylistCollection();
       this.playlistCollection.bind('change add remove sync', this.render, this);
       this.playlistCollection.fetch();
+      
+      this.tokenInfoModel = new TokenInfo();
+      this.tokenInfoModel.fetch();
     },
     render: function() {
       var self = this;
 
-      var data = {playlist : this.playlistCollection.toJSON()};
+      var data = {playlist : this.playlistCollection.toJSON(), userId : this.tokenInfoModel.toJSON().id};
       var compiledTemplate = _.template( playlistTemplate, data );
       this.$el.html( compiledTemplate );
 

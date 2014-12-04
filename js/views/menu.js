@@ -82,10 +82,12 @@ define([
       $('#user-menu').show();
       if(loginModel) {
         $('#user-menu #user-name').html(loginModel.get('name'));
+        $('#user-profil-link').attr("href", "#user/"+loginModel.get('id'));
       }
       else {
         new Login().fetch({success: function(loginModel) {
           $('#user-menu #user-name').html(loginModel.get('name'));
+					$('#user-profil-link').attr("href", "#user/"+loginModel.get('id'));
         }});
       }
     },

@@ -26,7 +26,8 @@
                 </tr>
               </thead>
               <tbody id="playlists-table">
-                <% _.each(playlist, function(item) { %>
+                <% _.each(playlist, function(item) { 
+                	if (item.owner !== undefined && item.owner.id === userId ) { %>
                   <tr>
                     <td><%= item.name %></td>
                     <td><%= item.tracks.length %></td>
@@ -35,6 +36,7 @@
                       <button class="edit btn btn-sm btn-success" data-id="<%= item.id %>"><i class="fa fa-eye"></i></button>
                     </td>
                   </tr>
+                <%  } %>
                 <% }); %> 
               </tbody>
             </table>
