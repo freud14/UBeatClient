@@ -1,9 +1,76 @@
-<form class="form-login" role="form" name="login-form">
+
+
+<form id="login-form" class="form-login" role="form" name="login-form">
   <h2 class="form-login-heading">Connectez-vous</h2>
+  <div style="display:none;" class="alert alert-success" role="alert" id="signup-success">
+    <strong>Confirmation</strong> Vous pouvez maintenant vous connecter !
+  </div>
   <div class="alert alert-danger" role="alert" id="login-error">
     <strong>Erreur!</strong> L'adresse courriel ou le mot de passe est invalide.
   </div>
   <input name="email" type="email" class="form-control" placeholder="Adresse courriel" required autofocus>
   <input name="password" type="password" class="form-control" placeholder="Mot de passe" required>
+  <a id="signup" >S'enregistrer</a>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
 </form>
+
+<form id="signup-form" class="form-login" role="form" name="signup-form" style="display:none;" >
+  <div style="display:none;" class="alert alert-danger" role="alert" id="signup-error">
+    <strong>Erreur!</strong> L'adresse courriel est invalide ou déjà prise.
+  </div>
+  <h2 class="form-login-heading">Enregistrez-vous</h2>
+  <input id="signup-name" name="name" type="text" class="form-control" placeholder="Nom" required>
+  <input id="signup-email" name="email" type="email" class="form-control" placeholder="Adresse courriel" required autofocus>
+  <input id="signup-password" name="password" type="password" class="form-control" placeholder="Mot de passe" required>
+
+  <a id="back-to-login" >Retour au login</a>
+  <button id="signup-action" class="btn btn-lg btn-primary btn-block" type="submit">S'enregistrer</button>
+</form>
+
+
+<script>
+ $('#signup').click(function(){
+  $('#login-form').hide();
+  $('#signup-form').fadeIn();
+ });
+
+
+ $('#back-to-login').click(function(){
+  $('#signup-form').hide(); 	
+  $('#login-form').fadeIn();
+ });
+
+
+ $('#signup-action').click(function(){
+ 	
+  if($('#signup-name').val() == ""){
+  	alert('S.V.P Entrez votre nom');
+  	return false;
+  }
+  if($('#signup-email').val() == ""){
+  	alert('S.V.P Entrez votre courriel');
+  	return false;
+  }
+  if($('#signup-password').val() == ""){
+  	alert('S.V.P Entrez votre mot de passe');
+  	return false;
+  }
+
+  $.ajax({
+   type: "POST",
+   url: "https://ubeat.herokuapp.com/signup",
+   data: $("#signup-form").serialize(), // serializes the form's elements.
+   success: function(data)
+   {
+    $('#signup-form').hide(); 	
+    $('#login-form').fadeIn();
+    $('#signup-success').show();
+   },
+   error: function(data){
+   	$('#signup-error').show();
+   }
+  });
+  return false;
+ });
+</script>
+
