@@ -30,6 +30,8 @@ define([
           self.render();
         });
       });
+
+      this.searchQuery = options.request;
     },
     render: function() {
       var self = this;
@@ -37,12 +39,16 @@ define([
       var compiledTemplate = _.template( searchTemplate, data);
       this.$el.html( compiledTemplate );
 
+      this.$el.find('input[id="search-field"]').val(this.searchQuery);
       var searchResults = this.$el.find('#search-results');
       if (typeof data.results !== 'undefined') {
         searchResults.empty();
         _.each(data.results, function(result) {
           var compiledUserTemplate;
           switch(result.wrapperType) {
+            case 'user':
+              compiledSearchItemTemplate = _.template(searchUserTemplate, result);
+              break;
             case 'artist':
               compiledSearchItemTemplate = _.template(searchArtistTemplate, result);
               break;
@@ -51,9 +57,6 @@ define([
               break;
             case 'track':
               compiledSearchItemTemplate = _.template(searchTrackTemplate, result);
-              break;
-            default:
-              compiledSearchItemTemplate = _.template(searchUserTemplate, result);
               break;
           }
 
@@ -89,9 +92,9 @@ define([
       if (form.find('input[id="search-field"]').val().length >= 1) {
         var request = form.find('input[id="search-field"]').val();
         if (searchType === "") {
-          window.location.hash = "#search/" + request;
+          window.location.hash = "#search/" + encodeURIComponent(request);
         } else {
-          window.location.hash = "#search/" + request + "/" + searchType;
+          window.location.hash = "#search/" + encodeURIComponent(request) + "/" + searchType;
         }
       } else {
         $('.top-center').notify({
@@ -100,12 +103,6 @@ define([
           type: 'danger',
         }).show();
       }
-    },
-
-    refineSearch: function(event) {
-      var request = $("input.#search-field").val();
-      var searchType = $(event.currentTarget).data('type');
-      console.log(request + "  type :  " + searchType);
     },
     followUser: function(event) {
 
