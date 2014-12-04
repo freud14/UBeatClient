@@ -194,11 +194,41 @@ ul.alert-dropdown {
 }
 
 /* Search */
+#search-results {
+  padding-top: 50px;
+}
 
-#search-field, #search-button {
+#search-field {
   background-color: #333333;
   border-color: #999999;
   color: white;
+}
+
+#search-button {
+  background-color: #333333;
+  border-color: #999999;
+  color: white;
+}
+
+.search-form>#search-field {
+  background-color: #333333;
+  border-color: #999999;
+  color: white;
+  height: 35px;
+}
+
+#type-search {
+  background-color: #333333;
+  border-color: #999999;
+  color: white;
+  height: 35px;
+}
+
+.search-form>#search-button {
+  background-color: #333333;
+  border-color: #222222;
+  color: white;
+  height: 35px;
 }
 
 /* Artist page display */
@@ -297,6 +327,52 @@ ul.alert-dropdown {
 
 .newList-input {
   margin-bottom: 15px;
+}
+
+.search-img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  display: table-cell;
+}
+
+.search-artist-img, .search-track-img, .search-user-img {
+  font-size: 70px;
+  text-align:center;
+}
+
+.search-img {
+  float:left;
+}
+
+.search-desc {
+  vertical-align: top;
+  display: table-cell;
+}
+
+.search-desc h2 {
+  font-size: 20px;
+  margin-top: 0px;
+}
+
+.search-result {
+  margin: 10px;
+  padding: 10px;
+  background-color: #AAAAAA;
+}
+
+.search-result:hover {
+  background-color: #888888;
+}
+
+.search-result a, .search-result a:hover {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.spacer {
+  clear: both;
+  display:block;
 }
 
 div#info-user {

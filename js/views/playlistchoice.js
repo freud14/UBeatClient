@@ -27,6 +27,7 @@ define([
 
     playlistChoice: function(event) {
       this.eventBus.trigger('addToPlaylist', this.collection.get($(event.target).val()), this.model);
+      this.$el.find('.playlists option[value=""]').attr('selected', 'selected');
     },
   });
 
