@@ -2,11 +2,12 @@
 define([
   'jquery',
   'underscore',
+  'md5',
   'backbone',
   'models/Login',
   'text!templates/menu.html',
   'jquery.cookie'
-], function($, _, Backbone, Login, loginTemplate){
+], function($, _, md5, Backbone, Login, loginTemplate){
   var LoginView = Backbone.View.extend({
     el: $('#menu'),
     initialize: function(options) {
@@ -80,14 +81,19 @@ define([
     login: function(loginModel) {
       $('#login-menu').hide();
       $('#user-menu').show();
-      if(loginModel) {
+
+      updateMenuWithModel = function(loginModel) {
         $('#user-menu #user-name').html(loginModel.get('name'));
         $('#user-profil-link').attr("href", "#user/"+loginModel.get('id'));
+        $('#user-menu .user-picture').attr("src", 'http://www.gravatar.com/avatar/' + md5(loginModel.get('email')) + '?s=25');
+      }
+
+      if(loginModel) {
+        updateMenuWithModel(loginModel);
       }
       else {
         new Login().fetch({success: function(loginModel) {
-          $('#user-menu #user-name').html(loginModel.get('name'));
-					$('#user-profil-link').attr("href", "#user/"+loginModel.get('id'));
+          updateMenuWithModel(loginModel);
         }});
       }
     },

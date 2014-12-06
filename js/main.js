@@ -8,7 +8,8 @@ require.config({
     'jquery.cookie': 'libs/plugins/jquery.cookie',
     'bootstrap-notify': 'libs/plugins/bootstrap-notify',
     underscore: 'libs/underscore/underscore',
-    backbone: 'libs/backbone/backbone'
+    backbone: 'libs/backbone/backbone',
+    md5: 'libs/md5.min',
   },
   shim: {
     bootstrap: {
