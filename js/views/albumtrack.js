@@ -16,6 +16,7 @@ define([
       this.playlistCollection = options.playlistCollection;
 
       this.eventBus = options.eventBus;
+      this.tokenInfoModel = options.tokenInfoModel;
 
       this.eventBus.bind("songChanged", this.songChanged, this);
     },
@@ -32,6 +33,7 @@ define([
         collection: this.playlistCollection,
         model: this.model,
         eventBus : this.eventBus,
+        tokenInfoModel : this.tokenInfoModel,
       }).render().el);
 
       return this;

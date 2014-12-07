@@ -12,9 +12,10 @@ define([
       var self = this;
 
       this.eventBus = options.eventBus;
+      this.tokenInfoModel = options.tokenInfoModel;
     },
     render: function() {
-      var data = {playlists : this.collection.toJSON()};
+      var data = {playlists : this.collection.toJSON(), userId : this.tokenInfoModel.toJSON().id};
       var compiledTemplate = _.template( playlistchoiceTemplate, data );
 
       this.$el.html( compiledTemplate );

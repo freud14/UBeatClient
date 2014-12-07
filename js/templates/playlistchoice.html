@@ -1,6 +1,8 @@
 <select class="playlists">
   <option value="">Ajouter à la playlist...</option>
-  <% _.each(playlists, function(playlist) { %>
-    <option value="<%= playlist.id %>"><%= playlist.name %></option>
+  <% _.each(playlists, function(playlist) {
+    if (playlist.owner !== undefined && playlist.owner.id === userId ) { %>
+      <option value="<%= playlist.id %>"><%= playlist.name %></option>
+    <%  } %>
   <% }) %>
 </select>

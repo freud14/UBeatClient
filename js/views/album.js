@@ -38,6 +38,9 @@ define([
       this.playlistCollection = new PlaylistCollection();
       this.playlistCollection.bind('change add remove sync', this.render, this);
       this.playlistCollection.fetch();
+
+      this.tokenInfoModel = new TokenInfo();
+      this.tokenInfoModel.fetch();
     },
     render: function() {
       var self = this;
@@ -51,6 +54,7 @@ define([
       this.$el.find('.album-playlistchoice').html(new PlaylistChoiceView({
         collection: this.playlistCollection,
         eventBus : this.playlistChoiceEventBus,
+        tokenInfoModel : this.tokenInfoModel,
       }).render().el);
 
       var trackList = this.$el.find('#track-list');
@@ -59,7 +63,8 @@ define([
         trackList.append(new AlbumTrackView({
           model: track,
           playlistCollection: self.playlistCollection,
-          eventBus : self.trackEventBus
+          eventBus : self.trackEventBus,
+          tokenInfoModel : self.tokenInfoModel,
         }).render().el);
       });
 
