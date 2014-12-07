@@ -397,6 +397,10 @@ div#info-user {
   cursor: pointer;
 }
 
+#wave {
+  height:128px;
+}
+
 button.delete,button.edit {
   float: right;
   margin: 0px 2px;

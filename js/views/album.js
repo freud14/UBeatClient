@@ -3,6 +3,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'wavesurfer',
   'models/Album',
   'models/TrackCollection',
   'models/PlaylistCollection',
@@ -10,7 +11,7 @@ define([
   'views/playlistchoice',
   'text!templates/album.html',
   'bootstrap-notify'
-], function($, _, Backbone, Album, TrackCollection, PlaylistCollection, AlbumTrackView, PlaylistChoiceView, albumTemplate){
+], function($, _, Backbone, WaveSurferLibrary, Album, TrackCollection, PlaylistCollection, AlbumTrackView, PlaylistChoiceView, albumTemplate){
   var AlbumView = Backbone.View.extend({
     el: $('#page-wrapper'),
     initialize: function(options) {
@@ -73,23 +74,45 @@ define([
       var curr_year = d.getFullYear();
       return curr_date + " " + m_names[curr_month] + " " + curr_year;
     },
+    stopSong: function(track) {
+      var self = this;
+      if(this.currentSong) {
+        this.currentSong.pause();
+      }
+
+      self.currentSong.destroy();
+      self.currentSong = undefined;
+      this.$el.find('#track-list #wave').remove();
+    },
 
     playSong: function(track) {
       var self = this;
       if(this.currentSong) {
-        this.currentSong.pause();
+        this.stopSong(track);
         this.trackEventBus.trigger('songChanged');
       }
-      this.currentSong = new Audio(track.previewUrl);
-      this.currentSong.addEventListener("ended", function() {
+
+      var originalTrack = this.trackCollection.find(function(model) { return model.get('trackId') == track.trackId; });
+      var trackIndex = this.trackCollection.indexOf(originalTrack);
+      var trackSelected = this.$el.find('#track-list tr:eq(' + trackIndex + ')');
+      trackSelected.after('<tr colspan="3" id="wave"></tr>');
+
+      this.currentSong = Object.create(WaveSurfer);
+      this.currentSong.init({
+        container: '#wave',
+        waveColor: 'violet',
+        progressColor: 'purple',
+        fillParent: true,
+        interact: false
+      });
+      this.currentSong.on('ready', function () {
+        self.currentSong.play();
+      });
+      this.currentSong.on('finish', function () {
+        this.stopSong(track);
         self.trackEventBus.trigger('songChanged');
-      }, true);
-      this.currentSong.play();
-    },
-    stopSong: function(track) {
-      if(this.currentSong) {
-        this.currentSong.pause();
-      }
+      });
+      this.currentSong.load(track.previewUrl);
     },
 
     addTrackToPlaylist: function(playlist, track) {

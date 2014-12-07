@@ -10,6 +10,7 @@ require.config({
     underscore: 'libs/underscore/underscore',
     backbone: 'libs/backbone/backbone',
     md5: 'libs/md5.min',
+    wavesurfer: 'libs/wavesurfer.min'
   },
   shim: {
     bootstrap: {
