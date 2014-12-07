@@ -35,9 +35,6 @@ define([
         });
       });
 
-
-
-
       this.searchQuery = options.request;
       this.searchType = options.searchType;
     },
@@ -48,21 +45,15 @@ define([
       this.$el.html( compiledTemplate );
 
       this.$el.find('input[id="search-field"]').val(this.searchQuery);
+      this.$el.find('#type-search').val(this.searchType);
       var searchResults = this.$el.find('#search-results');
 
-      if (this.searchType == 'users' && data.length != 0) {
-        searchResults.empty();
-        _.each(data, function(user) {
-          compiledUserItemTemplate = _.template(searchUserTemplate, user);
-          searchResults.append($(compiledUserItemTemplate));
-        });
-      }
-      else if (typeof data.results !== 'undefined') {
+      if (typeof data.results !== 'undefined') {
         searchResults.empty();
         _.each(data.results, function(result) {
           var compiledUserTemplate;
           switch(result.wrapperType) {
-            case 'user':
+            case 'users':
               compiledSearchItemTemplate = _.template(searchUserTemplate, result);
               break;
             case 'artist':
@@ -88,6 +79,9 @@ define([
 
           searchResults.append(template);
         });
+        if(data.results.length == 0) {
+          searchResults.text("Il n'y aucun résultat à cette recherche.");
+        }
       }
       return this;
     },
@@ -103,8 +97,7 @@ define([
       var self = this;
       var form = $(event.target);
 
-      var selectElmt = document.getElementById("type-search");
-      var searchType = selectElmt.options[selectElmt.selectedIndex].value;
+      var searchType = this.$el.find('#type-search option:selected').val();
 
       if (form.find('input[id="search-field"]').val().length >= 1) {
         var request = form.find('input[id="search-field"]').val();
