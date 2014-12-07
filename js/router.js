@@ -16,9 +16,7 @@ define([
   var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'index',
-      'album': 'album',
       'album/:id': 'album',
-      'artist': 'artist',
       'artist/:id': 'artist',
       'login': 'login',
       'playlist': 'playlist',
@@ -39,12 +37,12 @@ define([
       this.navigationEventBus.trigger('navigation', 'index');
     },
     album: function(id) {
-      var albumView = new AlbumView({id : id ? id : 579147674});
+      var albumView = new AlbumView({id : id});
       albumView.render();
       this.navigationEventBus.trigger('navigation', 'album');
     },
     artist: function(id) {
-      var artistView = new ArtistView({id : id ? id : 3996865});
+      var artistView = new ArtistView({id : id});
       artistView.render();
       this.navigationEventBus.trigger('navigation', 'artist');
     },
