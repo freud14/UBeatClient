@@ -79,16 +79,6 @@ define([
       userView.render();
       this.navigationEventBus.trigger('navigation', 'user');
     },
-    search: function(q, type) {
-      var searchView;
-      if (type) {
-        searchView = new SearchView({request : q, searchType : type});
-      } else {
-        searchView = new SearchView({request : q});
-      }
-      searchView.render();
-      this.navigationEventBus.trigger('navigation', 'search');
-    },
   });
 
   var initialize = function() {

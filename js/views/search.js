@@ -24,14 +24,22 @@ define([
 
       this.searchModel = new Search();
 
+      this.tokenInfoModel = new TokenInfo();
+
       this.playlistCollection = new PlaylistCollection();
       this.playlistCollection.fetch().done(function(){
         self.searchModel.fetch(options).done(function(){
-          self.render();
+          self.tokenInfoModel.fetch().done(function(){
+            self.render();
+          });
         });
       });
 
+
+
+
       this.searchQuery = options.request;
+      this.searchType = options.searchType;
     },
     render: function() {
       var self = this;
@@ -41,7 +49,15 @@ define([
 
       this.$el.find('input[id="search-field"]').val(this.searchQuery);
       var searchResults = this.$el.find('#search-results');
-      if (typeof data.results !== 'undefined') {
+
+      if (this.searchType == 'users' && data.length != 0) {
+        searchResults.empty();
+        _.each(data, function(user) {
+          compiledUserItemTemplate = _.template(searchUserTemplate, user);
+          searchResults.append($(compiledUserItemTemplate));
+        });
+      }
+      else if (typeof data.results !== 'undefined') {
         searchResults.empty();
         _.each(data.results, function(result) {
           var compiledUserTemplate;
@@ -66,6 +82,7 @@ define([
               collection: self.playlistCollection,
               model: result,
               eventBus : self.playlistChoiceEventBus,
+              tokenInfoModel: self.tokenInfoModel,
             }).render().el);
           }
 
