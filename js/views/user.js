@@ -35,7 +35,7 @@ define([
     render: function() {
       var self = this;
 
-      var data = {user : this.userModel.toJSON(), playlist : this.playlistCollection.toJSON(), myId : this.tokenInfoModel.toJSON().id};
+      var data = {user : this.userModel.toJSON(), playlist : this.playlistCollection.toJSON(), userConnected : this.tokenInfoModel.toJSON()};
       var compiledTemplate = _.template( userTemplate, data );
 
       this.$el.html( compiledTemplate );
@@ -44,17 +44,16 @@ define([
     },
 
     events: {
-      'click a#follow-button' : 'addFollow',
+      'click #follow-button' : 'addFollow',
+      'click #unfollow-button' : 'removeFollowButton',
       'click button.delete' : 'removeFollow',
       'click tr.row-following' : 'viewFollowing'
     },
 
-      //Ne marche pas, utilisé pour follow un user
       addFollow: function(event) {
           event.preventDefault();
           event.stopImmediatePropagation();
           followId = $(event.currentTarget).data('id');
-          console.log(followId);
           var followingUser = new User({id : followId});
           this.userModel.save({},{
               type:"POST",
