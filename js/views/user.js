@@ -63,6 +63,10 @@ define([
                       message: { text: 'Follow ajouté avec succès !' },
                       fadeOut: { enabled: true, delay: 1000 }
                   }).show();
+                  $("#to-follow").remove();
+                  $("#info-user").after("<div id='to-unfollow'>"+
+                      "<button type='button' class='btn btn-danger' id='unfollow-button' data-id='"+followId+"'>Unfollow</button>"+
+                      "</div>");
               }
           });
       },
@@ -78,6 +82,22 @@ define([
               }).show();
               $("#following-"+followId).hide();
           });
+      },
+
+      removeFollowButton: function(event) {
+          followId = $(event.currentTarget).data('id');
+          this.userModel.destroy({id : followId}
+          ).done(function(){
+                  $('.top-center').notify({
+                      message: { text: 'Follow supprimé' },
+                      fadeOut: { enabled: true, delay: 1000 },
+                      type: 'danger',
+                  }).show();
+                  $("#to-unfollow").remove();
+                  $("#info-user").after("<div id='to-follow'>"+
+                      "<button type='button' class='btn btn-primary' id='follow-button' data-id='"+followId+"'>Follow</button>"+
+                      "</div>");
+              });
       },
 
       viewFollowing: function(event) {
