@@ -56,7 +56,7 @@ define([
         _.each(data.results, function(result) {
           var compiledUserTemplate;
           switch(result.wrapperType) {
-            case null:
+            case 'user':
               compiledSearchItemTemplate = _.template(searchUserTemplate, result);
               break;
             case 'artist':
@@ -132,10 +132,6 @@ define([
               message: { text: 'Follow ajouté avec succès !' },
               fadeOut: { enabled: true, delay: 1000 }
           }).show();
-          /*$("#to-follow").remove();
-          $("#info-user").after("<div id='to-unfollow'>"+
-            "<button type='button' class='btn btn-danger' id='unfollow-button' data-id='"+followId+"'>Unfollow</button>"+
-            "</div>");*/
         }
       });
     },
