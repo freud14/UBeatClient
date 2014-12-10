@@ -6,13 +6,14 @@ define([
   'models/PlaylistCollection',
   'models/Track',
   'models/TrackCollection',
+  'models/User',
   'views/playlistchoice',
   'text!templates/search.html',
   'text!templates/searchartist.html',
   'text!templates/searchalbum.html',
   'text!templates/searchtrack.html',
   'text!templates/searchuser.html',
-], function($, _, Backbone, Search, PlaylistCollection, Track, TrackCollection, PlaylistChoiceView, searchTemplate, searchArtistTemplate, searchAlbumTemplate, searchTrackTemplate, searchUserTemplate) {
+], function($, _, Backbone, Search, PlaylistCollection, Track, TrackCollection, User, PlaylistChoiceView, searchTemplate, searchArtistTemplate, searchAlbumTemplate, searchTrackTemplate, searchUserTemplate) {
   var SearchView = Backbone.View.extend({
     el: $('#page-wrapper'),
     initialize: function(options) {
@@ -23,8 +24,9 @@ define([
       this.playlistChoiceEventBus.bind("addToPlaylist", this.addToPlaylist, this);
 
       this.searchModel = new Search();
-
+      
       this.tokenInfoModel = new TokenInfo();
+      this.tokenInfoModel.fetch();
 
       this.playlistCollection = new PlaylistCollection();
       this.playlistCollection.fetch().done(function(){
@@ -41,6 +43,7 @@ define([
     render: function() {
       var self = this;
       var data = this.searchModel.toJSON();
+
       var compiledTemplate = _.template( searchTemplate, data);
       this.$el.html( compiledTemplate );
 
@@ -53,7 +56,7 @@ define([
         _.each(data.results, function(result) {
           var compiledUserTemplate;
           switch(result.wrapperType) {
-            case 'users':
+            case null:
               compiledSearchItemTemplate = _.template(searchUserTemplate, result);
               break;
             case 'artist':
@@ -79,7 +82,7 @@ define([
 
           searchResults.append(template);
         });
-        if(data.results.length == 0) {
+        if(data.results.length === 0) {
           searchResults.text("Il n'y aucun résultat à cette recherche.");
         }
       }
@@ -88,6 +91,7 @@ define([
 
     events: {
       'submit form[name="search-form"]': 'search',
+      'click a#follow-button' : 'followUser',
     },
 
     search: function(event) {
@@ -115,7 +119,25 @@ define([
       }
     },
     followUser: function(event) {
+      followId = $(event.currentTarget).data('id');
+      var followingUser = new User({id : followId});
 
+      var currentUser = { userConnected : this.tokenInfoModel.toJSON()};
+      console.log(currentUser);
+
+      currentUser.save({},{
+        type:"POST",
+        success: function(data) {
+          $('.top-center').notify({
+              message: { text: 'Follow ajouté avec succès !' },
+              fadeOut: { enabled: true, delay: 1000 }
+          }).show();
+          /*$("#to-follow").remove();
+          $("#info-user").after("<div id='to-unfollow'>"+
+            "<button type='button' class='btn btn-danger' id='unfollow-button' data-id='"+followId+"'>Unfollow</button>"+
+            "</div>");*/
+        }
+      });
     },
     addToPlaylist: function(playlistModel, searchResult) {
       if (searchResult.wrapperType == 'collection') {
