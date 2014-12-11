@@ -3,10 +3,25 @@
     <i class="fa fa-user"></i>
   </div>
   <div class="search-desc search-user-desc">
-    <h2><a href="#user/<%= id %>"><%= name %></a></h2>
-    <div id="to-follow">
-    	<a id="follow-button" data-id="<%= id %>"><img src="resources/img/follow-logo.png"></a>
-  	</div>
+    <h2><a href="#user/<%= user.id %>"><%= user.name %></a></h2>
+
+    <% if (user.id !== userConnected.id) {
+      var alreadyFollow = false;
+         _.each(userConnected.following, function(follow) {
+           if (follow.id === user.id) {
+             alreadyFollow = true;
+           }
+         });
+         if (alreadyFollow === true) { %>
+           <div id="to-unfollow">
+             <button type="button" class="btn btn-danger" id="unfollow-button" data-id="<%= user.id %>">Unfollow</button>
+           </div>
+         <% } else { %>
+           <div id="to-follow">
+             <button type="button" class="btn btn-primary" id="follow-button" data-id="<%= user.id %>">Follow</button>
+           </div>
+         <% } %>
+    <% } %>
   </div>
   <div class="spacer"> </div>
 </div>

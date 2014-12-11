@@ -56,8 +56,9 @@ define([
         _.each(data.results, function(result) {
           var compiledUserTemplate;
           switch(result.wrapperType) {
-            case 'user':
-              compiledSearchItemTemplate = _.template(searchUserTemplate, result);
+            case 'users':
+              var userData = {user : result, userConnected : this.tokenInfoModel.toJSON()};
+              compiledSearchItemTemplate = _.template(searchUserTemplate, userData);
               break;
             case 'artist':
               compiledSearchItemTemplate = _.template(searchArtistTemplate, result);
@@ -92,6 +93,7 @@ define([
     events: {
       'submit form[name="search-form"]': 'search',
       'click a#follow-button' : 'followUser',
+      'click a#unfollow-button' : 'unfollowUser',
     },
 
     search: function(event) {
@@ -122,10 +124,7 @@ define([
       followId = $(event.currentTarget).data('id');
       var followingUser = new User({id : followId});
 
-      var currentUser = { userConnected : this.tokenInfoModel.toJSON()};
-      console.log(currentUser);
-
-      currentUser.save({},{
+      followingUser.save({},{
         type:"POST",
         success: function(data) {
           $('.top-center').notify({
@@ -133,6 +132,19 @@ define([
               fadeOut: { enabled: true, delay: 1000 }
           }).show();
         }
+      });
+    },
+    unfollowUser: function(event) {
+      unfollowId = $(event.currentTarget).data('id');
+      var myUser = new User(this.tokenInfoModel.toJSON());
+
+      myUser.destroy({id : followId}
+      ).done(function(){
+        $('.top-center').notify({
+            message: { text: 'Follow supprimé' },
+            fadeOut: { enabled: true, delay: 1000 },
+            type: 'danger',
+        }).show();
       });
     },
     addToPlaylist: function(playlistModel, searchResult) {
