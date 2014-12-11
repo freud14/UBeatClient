@@ -14,11 +14,11 @@
          });
          if (alreadyFollow === true) { %>
            <div id="to-unfollow">
-             <button type="button" class="btn btn-danger" id="unfollow-button" data-id="<%= user.id %>">Unfollow</button>
+             <button type="button" class="btn btn-danger unfollow-button" data-id="<%= user.id %>">Unfollow</button>
            </div>
          <% } else { %>
            <div id="to-follow">
-             <button type="button" class="btn btn-primary" id="follow-button" data-id="<%= user.id %>">Follow</button>
+             <button type="button" class="btn btn-primary follow-button" data-id="<%= user.id %>">Follow</button>
            </div>
          <% } %>
     <% } %>

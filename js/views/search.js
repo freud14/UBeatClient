@@ -24,7 +24,7 @@ define([
       this.playlistChoiceEventBus.bind("addToPlaylist", this.addToPlaylist, this);
 
       this.searchModel = new Search();
-      
+
       this.tokenInfoModel = new TokenInfo();
       this.tokenInfoModel.fetch();
 
@@ -57,7 +57,7 @@ define([
           var compiledUserTemplate;
           switch(result.wrapperType) {
             case 'users':
-              var userData = {user : result, userConnected : this.tokenInfoModel.toJSON()};
+              var userData = {user : result, userConnected : self.tokenInfoModel.toJSON()};
               compiledSearchItemTemplate = _.template(searchUserTemplate, userData);
               break;
             case 'artist':
@@ -92,8 +92,8 @@ define([
 
     events: {
       'submit form[name="search-form"]': 'search',
-      'click a#follow-button' : 'followUser',
-      'click a#unfollow-button' : 'unfollowUser',
+      'click button.follow-button' : 'followUser',
+      'click button.unfollow-button' : 'unfollowUser',
     },
 
     search: function(event) {
@@ -121,30 +121,38 @@ define([
       }
     },
     followUser: function(event) {
-      followId = $(event.currentTarget).data('id');
+      var self = this;
+      var followId = $(event.currentTarget).data('id');
       var followingUser = new User({id : followId});
 
       followingUser.save({},{
         type:"POST",
         success: function(data) {
-          $('.top-center').notify({
+          self.tokenInfoModel.fetch().done(function(){
+            self.render();
+            $('.top-center').notify({
               message: { text: 'Follow ajouté avec succès !' },
               fadeOut: { enabled: true, delay: 1000 }
-          }).show();
+            }).show();
+          });
         }
       });
     },
     unfollowUser: function(event) {
-      unfollowId = $(event.currentTarget).data('id');
+      var self = this;
+      var unfollowId = $(event.currentTarget).data('id');
       var myUser = new User(this.tokenInfoModel.toJSON());
 
-      myUser.destroy({id : followId}
+      myUser.destroy({id : unfollowId}
       ).done(function(){
-        $('.top-center').notify({
+        self.tokenInfoModel.fetch().done(function(){
+          self.render();
+          $('.top-center').notify({
             message: { text: 'Follow supprimé' },
             fadeOut: { enabled: true, delay: 1000 },
             type: 'danger',
-        }).show();
+          }).show();
+        });
       });
     },
     addToPlaylist: function(playlistModel, searchResult) {
