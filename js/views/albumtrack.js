@@ -49,7 +49,7 @@ define([
       "click .play": "play",
       "click .stop": "stop",
     },
-
+    
     play: function() {
       this.eventBus.trigger("playSong", this.model.toJSON());
       this.$el.find('.play').hide();

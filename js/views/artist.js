@@ -33,7 +33,6 @@ define([
           album: album,
         }).render().el);
 
-        //Insert clearfix. See http://getbootstrap.com/css/#grid-responsive-resets
         if ((index - 2) % 3 == 0) {
           albumsList.append("<div class=\"clearfix visible-xs\"></div>")
         }
@@ -45,6 +44,5 @@ define([
       return this;
     }
   });
-  // Our module now returns our view
   return ArtistView;
 });

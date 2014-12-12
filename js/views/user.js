@@ -41,6 +41,7 @@ define([
 
       return this;
     },
+
     events: {
       'click #follow-button' : 'addFollow',
       'click #unfollow-button' : 'removeFollowButton',
@@ -48,6 +49,7 @@ define([
       'click .edit' : 'editPlaylist',
       'click .delete' : 'removePlaylist'
     },
+
     addFollow: function(event) {
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -57,8 +59,8 @@ define([
         type:"POST",
         success: function(data) {
           $('.top-center').notify({
-              message: { text: 'Follow ajouté avec succès !' },
-              fadeOut: { enabled: true, delay: 1000 }
+            message: { text: 'Follow ajouté avec succès !' },
+            fadeOut: { enabled: true, delay: 1000 }
           }).show();
           $("#to-follow").remove();
           $("#info-user").after("<div id='to-unfollow'>"+
@@ -80,8 +82,8 @@ define([
         }).show();
         $("#to-unfollow").remove();
         $("#info-user").after("<div id='to-follow'>"+
-            "<button type='button' class='btn btn-primary' id='follow-button' data-id='"+followId+"'>Follow</button>"+
-            "</div>");
+          "<button type='button' class='btn btn-primary' id='follow-button' data-id='"+followId+"'>Follow</button>"+
+          "</div>");
       });
     },
     viewFollowing: function(event) {

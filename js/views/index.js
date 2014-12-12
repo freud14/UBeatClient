@@ -3,8 +3,6 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  // Using the Require.js text! plugin, we are loaded raw text
-  // which will be used as our views primary template
   'text!templates/index.html',
 ], function($, _, Backbone, indexTemplate){
   var IndexView = Backbone.View.extend({
