@@ -44,8 +44,6 @@ define([
       var self = this;
       var form = $(event.target);
 
-      console.log(form.find('input[id="search-field"]').val());
-
       if (form.find('input[id="search-field"]').val().length >= 1) {
         var request = form.find('input[id="search-field"]').val();
         window.location.hash = "#search/" + request;
