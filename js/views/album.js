@@ -114,10 +114,12 @@ define([
         self.currentSong.play();
       });
       this.currentSong.on('finish', function () {
-        this.stopSong(track);
+        self.stopSong(track);
         self.trackEventBus.trigger('songChanged');
       });
-      this.currentSong.load(track.previewUrl);
+
+      var corsProxyUrl = track.previewUrl.replace("http://", "http://www.corsproxy.com/");
+      this.currentSong.load(corsProxyUrl);
     },
 
     addTrackToPlaylist: function(playlist, track) {
