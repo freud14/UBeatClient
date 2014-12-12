@@ -31,7 +31,6 @@ define([
       this.tokenInfoModel = new TokenInfo();
       this.tokenInfoModel.fetch();
     },
-
     render: function() {
       var self = this;
 
@@ -42,70 +41,70 @@ define([
 
       return this;
     },
-
     events: {
       'click #follow-button' : 'addFollow',
       'click #unfollow-button' : 'removeFollowButton',
-      'click button.delete' : 'removeFollow',
-      'click tr.row-following' : 'viewFollowing'
+      'click tr.row-following' : 'viewFollowing',
+      'click .edit' : 'editPlaylist',
+      'click .delete' : 'removePlaylist'
     },
-
-      addFollow: function(event) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          followId = $(event.currentTarget).data('id');
-          var followingUser = new User({id : followId});
-          this.userModel.save({},{
-              type:"POST",
-              success: function(data) {
-                  $('.top-center').notify({
-                      message: { text: 'Follow ajouté avec succès !' },
-                      fadeOut: { enabled: true, delay: 1000 }
-                  }).show();
-                  $("#to-follow").remove();
-                  $("#info-user").after("<div id='to-unfollow'>"+
-                      "<button type='button' class='btn btn-danger' id='unfollow-button' data-id='"+followId+"'>Unfollow</button>"+
-                      "</div>");
-              }
-          });
-      },
-
-      removeFollow: function(event) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          followId = $(event.currentTarget).data('id');
-          this.userModel.destroy({id : followId}
-          ).done(function(){
-              $('.top-center').notify({
-                  message: { text: 'Follow supprimé' },
-                  fadeOut: { enabled: true, delay: 1000 },
-                  type: 'danger',
-              }).show();
-              $("#following-"+followId).hide();
-          });
-      },
-
-      removeFollowButton: function(event) {
-          followId = $(event.currentTarget).data('id');
-          this.userModel.destroy({id : followId}
-          ).done(function(){
-                  $('.top-center').notify({
-                      message: { text: 'Follow supprimé' },
-                      fadeOut: { enabled: true, delay: 1000 },
-                      type: 'danger',
-                  }).show();
-                  $("#to-unfollow").remove();
-                  $("#info-user").after("<div id='to-follow'>"+
-                      "<button type='button' class='btn btn-primary' id='follow-button' data-id='"+followId+"'>Follow</button>"+
-                      "</div>");
-              });
-      },
-
-      viewFollowing: function(event) {
-          followingId = $(event.currentTarget).data('id');
-          this.undelegateEvents();
-          window.location.hash = "#user/" + followingId;
-      },
+    addFollow: function(event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      followId = $(event.currentTarget).data('id');
+      var followingUser = new User({id : followId});
+      this.userModel.save({},{
+        type:"POST",
+        success: function(data) {
+          $('.top-center').notify({
+              message: { text: 'Follow ajouté avec succès !' },
+              fadeOut: { enabled: true, delay: 1000 }
+          }).show();
+          $("#to-follow").remove();
+          $("#info-user").after("<div id='to-unfollow'>"+
+            "<button type='button' class='btn btn-danger' id='unfollow-button' data-id='"+followId+"'>Unfollow</button>"+
+            "</div>");
+        }
+      });
+    },
+    removeFollowButton: function(event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      followId = $(event.currentTarget).data('id');
+      this.userModel.destroy({id : followId}
+      ).done(function(){
+        $('.top-center').notify({
+            message: { text: 'Follow supprimé' },
+            fadeOut: { enabled: true, delay: 1000 },
+            type: 'danger',
+        }).show();
+        $("#to-unfollow").remove();
+        $("#info-user").after("<div id='to-follow'>"+
+            "<button type='button' class='btn btn-primary' id='follow-button' data-id='"+followId+"'>Follow</button>"+
+            "</div>");
+      });
+    },
+    viewFollowing: function(event) {
+      followingId = $(event.currentTarget).data('id');
+      this.undelegateEvents();
+      window.location.hash = "#user/" + followingId;
+    },
+    editPlaylist: function(event) {
+      playlistId = $(event.currentTarget).data('id');
+      this.undelegateEvents();
+      window.location.hash = "#playlistdetails/" + playlistId;
+    },
+    removePlaylist: function(event) {
+      playlistId = $(event.currentTarget).data('id');
+      playlistToDestroy = this.playlistCollection.get(playlistId);
+      playlistToDestroy.destroy({}).done(function(){
+        $('.top-center').notify({
+          message: { text: 'Playlist supprimé' },
+          fadeOut: { enabled: true, delay: 1000 },
+          type: 'danger',
+        }).show();
+      });
+    }
   });
 
   return UserView;
