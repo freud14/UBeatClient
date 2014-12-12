@@ -71,6 +71,8 @@ define([
       },
 
       removeFollow: function(event) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
           followId = $(event.currentTarget).data('id');
           this.userModel.destroy({id : followId}
           ).done(function(){
