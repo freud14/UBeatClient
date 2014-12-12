@@ -29,52 +29,84 @@ define([
 
     initialize: function(options) {
       this.navigationEventBus = options.navigationEventBus;
+      this.currentView = undefined;
     },
 
     index: function() {
-      var indexView = new IndexView();
-      indexView.render();
+      if(this.currentView) {
+        this.currentView.undelegateEvents();
+      }
+
+      this.currentView = new IndexView();
+      this.currentView.render();
       this.navigationEventBus.trigger('navigation', 'index');
     },
     album: function(id) {
-      var albumView = new AlbumView({id : id});
-      albumView.render();
+      if(this.currentView) {
+        this.currentView.undelegateEvents();
+      }
+
+      this.currentView = new AlbumView({id : id});
+      this.currentView.render();
       this.navigationEventBus.trigger('navigation', 'album');
     },
     artist: function(id) {
-      var artistView = new ArtistView({id : id});
-      artistView.render();
+      if(this.currentView) {
+        this.currentView.undelegateEvents();
+      }
+
+      this.currentView = new ArtistView({id : id});
+      this.currentView.render();
       this.navigationEventBus.trigger('navigation', 'artist');
     },
     playlist: function() {
-      var playlistView = new PlaylistView();
-      playlistView.render();
+      if(this.currentView) {
+        this.currentView.undelegateEvents();
+      }
+
+      this.currentView = new PlaylistView();
+      this.currentView.render();
       this.navigationEventBus.trigger('navigation', 'playlist');
     },
     playlistdetails: function(id) {
-      var playlistdetailsView = new PlaylistdetailsView({id : id});
+      if(this.currentView) {
+        this.currentView.undelegateEvents();
+      }
+
+      this.currentView = new PlaylistdetailsView({id : id});
       this.navigationEventBus.trigger('navigation', 'playlist');
     },
     login: function() {
-      var loginView = new LoginView({
+      if(this.currentView) {
+        this.currentView.undelegateEvents();
+      }
+
+      this.currentView = new LoginView({
         navigationEventBus : this.navigationEventBus,
       });
-      loginView.render();
+      this.currentView.render();
       this.navigationEventBus.trigger('navigation', 'login');
     },
     search: function(q, type) {
-      var searchView;
-      if (type) {
-        searchView = new SearchView({request : q, searchType : type});
-      } else {
-        searchView = new SearchView({request : q});
+      if(this.currentView) {
+        this.currentView.undelegateEvents();
       }
-      searchView.render();
+
+      if (type) {
+        this.currentView = new SearchView({request : q, searchType : type});
+      } else {
+        this.currentView = new SearchView({request : q});
+      }
+      this.currentView.render();
       this.navigationEventBus.trigger('navigation', 'search');
     },
     user: function(id) {
-      var userView = new UserView({id : id});
-      userView.render();
+      if(this.currentView) {
+        this.currentView.undelegateEvents();
+      }
+
+      this.currentView = new UserView({id : id});
+      this.currentView.render();
       this.navigationEventBus.trigger('navigation', 'user');
     },
   });

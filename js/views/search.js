@@ -107,7 +107,6 @@ define([
 
       if (form.find('input[id="search-field"]').val().length >= 1) {
         var request = form.find('input[id="search-field"]').val();
-        this.undelegateEvents();
         if (searchType === "") {
           window.location.hash = "#search/" + encodeURIComponent(request);
         } else {
