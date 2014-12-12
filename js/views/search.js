@@ -121,6 +121,8 @@ define([
       }
     },
     followUser: function(event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
       var self = this;
       var followId = $(event.currentTarget).data('id');
       var followingUser = new User({id : followId});
@@ -139,6 +141,8 @@ define([
       });
     },
     unfollowUser: function(event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
       var self = this;
       var unfollowId = $(event.currentTarget).data('id');
       var myUser = new User(this.tokenInfoModel.toJSON());
