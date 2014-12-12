@@ -12,7 +12,6 @@ define([
       return Backbone.Model.prototype.fetch.call(this, options);
     },
 
-    //Ne marche pas, utilisé pour follow un user
     save: function(attributes, options) {
       options = _.defaults((options || {}), {url: config.API_URL + 'follow'});
       return Backbone.Model.prototype.save.call(this, attributes, options);
