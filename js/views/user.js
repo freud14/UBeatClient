@@ -46,8 +46,9 @@ define([
       'click #follow-button' : 'addFollow',
       'click #unfollow-button' : 'removeFollowButton',
       'click tr.row-following' : 'viewFollowing',
+      'click button.delete' : 'removeFollow',
       'click .edit' : 'editPlaylist',
-      'click .delete' : 'removePlaylist'
+      'click .delete-playlist' : 'removePlaylist'
     },
 
     addFollow: function(event) {
@@ -67,6 +68,20 @@ define([
             "<button type='button' class='btn btn-danger' id='unfollow-button' data-id='"+followId+"'>Unfollow</button>"+
             "</div>");
         }
+      });
+    },
+    removeFollow: function(event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      followId = $(event.currentTarget).data('id');
+      this.userModel.destroy({id : followId}
+      ).done(function(){
+          $('.top-center').notify({
+            message: { text: 'Follow supprimé' },
+            fadeOut: { enabled: true, delay: 1000 },
+            type: 'danger',
+          }).show();
+          $("#following-"+followId).hide();
       });
     },
     removeFollowButton: function(event) {

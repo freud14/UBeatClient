@@ -40,7 +40,7 @@
                   <td><%= item.tracks.length %></td>
                   <td>
                       <% if (user.id === userConnected.id) { %>
-                    <button class="delete btn btn-sm btn-danger" data-id="<%= item.id %>"><i class="fa fa-times"></i></button>
+                    <button class="delete-playlist btn btn-sm btn-danger" data-id="<%= item.id %>"><i class="fa fa-times"></i></button>
                       <% } %>
                         <button class="edit btn btn-sm btn-success" data-id="<%= item.id %>"><i class="fa fa-eye"></i></button>
                       </td>
