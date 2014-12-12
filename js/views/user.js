@@ -35,7 +35,7 @@ define([
     render: function() {
       var self = this;
 
-      var data = {user : this.userModel.toJSON(), playlist : this.playlistCollection.toJSON(), myId : this.tokenInfoModel.toJSON().id};
+      var data = {user : this.userModel.toJSON(), playlist : this.playlistCollection.toJSON(), userConnected : this.tokenInfoModel.toJSON()};
       var compiledTemplate = _.template( userTemplate, data );
 
       this.$el.html( compiledTemplate );
@@ -44,17 +44,16 @@ define([
     },
 
     events: {
-      'click a#follow-button' : 'addFollow',
+      'click #follow-button' : 'addFollow',
+      'click #unfollow-button' : 'removeFollowButton',
       'click button.delete' : 'removeFollow',
       'click tr.row-following' : 'viewFollowing'
     },
 
-      //Ne marche pas, utilisé pour follow un user
       addFollow: function(event) {
           event.preventDefault();
           event.stopImmediatePropagation();
           followId = $(event.currentTarget).data('id');
-          console.log(followId);
           var followingUser = new User({id : followId});
           this.userModel.save({},{
               type:"POST",
@@ -63,6 +62,10 @@ define([
                       message: { text: 'Follow ajouté avec succès !' },
                       fadeOut: { enabled: true, delay: 1000 }
                   }).show();
+                  $("#to-follow").remove();
+                  $("#info-user").after("<div id='to-unfollow'>"+
+                      "<button type='button' class='btn btn-danger' id='unfollow-button' data-id='"+followId+"'>Unfollow</button>"+
+                      "</div>");
               }
           });
       },
@@ -78,6 +81,22 @@ define([
               }).show();
               $("#following-"+followId).hide();
           });
+      },
+
+      removeFollowButton: function(event) {
+          followId = $(event.currentTarget).data('id');
+          this.userModel.destroy({id : followId}
+          ).done(function(){
+                  $('.top-center').notify({
+                      message: { text: 'Follow supprimé' },
+                      fadeOut: { enabled: true, delay: 1000 },
+                      type: 'danger',
+                  }).show();
+                  $("#to-unfollow").remove();
+                  $("#info-user").after("<div id='to-follow'>"+
+                      "<button type='button' class='btn btn-primary' id='follow-button' data-id='"+followId+"'>Follow</button>"+
+                      "</div>");
+              });
       },
 
       viewFollowing: function(event) {
