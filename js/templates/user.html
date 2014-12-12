@@ -1,81 +1,81 @@
-      <div class="container-fluid">
-                <div id="info-user">
-				  <h1><%= user.name %></h1>
-				  <h6>Courriel : <%= user.email %></h6>
-                </div>
-                <% if (user.id !== userConnected.id) {
-                  var alreadyFollow = false;
-                     _.each(userConnected.following, function(follow) {
-                       if (follow.id === user.id) {
-                         alreadyFollow = true;
-                       }
-                     });
-                     if (alreadyFollow == true) { %>
-                       <div id="to-unfollow">
-                         <button type="button" class="btn btn-danger" id="unfollow-button" data-id="<%= user.id %>">Unfollow</button>
-                       </div>
-                     <% } else { %>
-                       <div id="to-follow">
-                         <button type="button" class="btn btn-primary" id="follow-button" data-id="<%= user.id %>">Follow</button>
-                       </div>
-                     <% } %>
-                <% } %>
-				<div id="my-playlists">
-					<div class="playlists-list">
-							<h4>Listes de lecture</h4>
-		          <div class="table-responsive">
-		            <table class="table table-bordered table-hover">
-		              <thead>
-		                <tr>
-		                  <th>Name</th>
-		                  <th>Number of songs</th>
-		                  <th></th>
-		                </tr>
-		              </thead>
-		              <tbody id="playlists-table">
-		                <% _.each(playlist, function(item) { 
-		                	if (item.owner !== undefined && item.owner.id === user.id ) { %>
-		                  <tr>
-		                    <td><%= item.name %></td>
-		                    <td><%= item.tracks.length %></td>
-		                    <td>
-                            <% if (user.id === userConnected.id) { %>
-		                      <button class="delete btn btn-sm btn-danger" data-id="<%= item.id %>"><i class="fa fa-times"></i></button>
-                            <% } %>
-                              <button class="edit btn btn-sm btn-success" data-id="<%= item.id %>"><i class="fa fa-eye"></i></button>
-                            </td>
-		                  </tr>
-		                <%  } %>
-		                <% }); %> 
-		              </tbody>
-		            </table>
-		          </div>
-	        </div>
-				</div>
-          <div id="my-follow">
-              <div class="my-follow-list">
-                  <h4>Following</h4>
-                  <div class="table-responsive">
-                      <table class="table table-bordered table-hover">
-                          <thead>
-                          <tr>
-                              <th>Name</th>
-                          </tr>
-                          </thead>
-                          <tbody id="follow-table">
-                          <% _.each(user.following, function(follow) { %>
-                          <tr id="following-<%= follow.id %>" data-id="<%= follow.id %>" class="row-following">
-                              <td>
-                                <%= follow.name %>
-                                <% if (user.id === userConnected.id) { %>
-                                <button class="delete btn btn-sm btn-danger" data-id="<%= follow.id %>"><i class="fa fa-times"></i></button>
-                                <% } %>
-                              </td>
-                          </tr>
-                          <% }); %>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
+<div class="container-fluid">
+          <div id="info-user">
+    <h1><%= user.name %></h1>
+    <h6>Courriel : <%= user.email %></h6>
           </div>
-      </div>
+          <% if (user.id !== userConnected.id) {
+            var alreadyFollow = false;
+               _.each(userConnected.following, function(follow) {
+                 if (follow.id === user.id) {
+                   alreadyFollow = true;
+                 }
+               });
+               if (alreadyFollow == true) { %>
+                 <div id="to-unfollow">
+                   <button type="button" class="btn btn-danger" id="unfollow-button" data-id="<%= user.id %>">Unfollow</button>
+                 </div>
+               <% } else { %>
+                 <div id="to-follow">
+                   <button type="button" class="btn btn-primary" id="follow-button" data-id="<%= user.id %>">Follow</button>
+                 </div>
+               <% } %>
+          <% } %>
+  <div id="my-playlists">
+    <div class="playlists-list">
+        <h4>Listes de lecture</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Number of songs</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="playlists-table">
+              <% _.each(playlist, function(item) { 
+              	if (item.owner !== undefined && item.owner.id === user.id ) { %>
+                <tr>
+                  <td><%= item.name %></td>
+                  <td><%= item.tracks.length %></td>
+                  <td>
+                      <% if (user.id === userConnected.id) { %>
+                    <button class="delete btn btn-sm btn-danger" data-id="<%= item.id %>"><i class="fa fa-times"></i></button>
+                      <% } %>
+                        <button class="edit btn btn-sm btn-success" data-id="<%= item.id %>"><i class="fa fa-eye"></i></button>
+                      </td>
+                </tr>
+              <%  } %>
+              <% }); %> 
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+    <div id="my-follow">
+        <div class="my-follow-list">
+            <h4>Following</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="follow-table">
+                    <% _.each(user.following, function(follow) { %>
+                    <tr id="following-<%= follow.id %>" data-id="<%= follow.id %>" class="row-following">
+                        <td>
+                          <%= follow.name %>
+                          <% if (user.id === userConnected.id) { %>
+                          <button class="delete btn btn-sm btn-danger" data-id="<%= follow.id %>"><i class="fa fa-times"></i></button>
+                          <% } %>
+                        </td>
+                    </tr>
+                    <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

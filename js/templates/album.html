@@ -1,37 +1,36 @@
-      <div class="container-fluid">
-        <ol class="breadcrumb">
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="#"><%= album.primaryGenreName %></a></li>
-          <li><a href="#artist/<%= album.artistId %>"><%= album.artistName %></a></li>
-          <li class="active"><%= album.collectionName %></li>
-        </ol>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="artist-infos">
-              <img class="img-responsive" src="<%= album.artworkUrl100 %>"/>
-              <h3><%= album.artistName %> - <%= album.collectionName %></h3>
-              <p>
-                <%= album.primaryGenreName %>  - <%= album.releaseDateString %> - <%= album.trackCount %> chansons
-              </p>
-              <div class="album-playlistchoice"></div>
-              <a href="<%= album.collectionViewUrl %>" target="itunes_store" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.png) no-repeat;width:110px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.svg);}"></a>
-            </div>
-            <div class="songs-list">
-              <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <th class="play-column">Jouer</th>
-                      <th>Titre</th>
-                      <th class="playlistchoice-column"></th>
-                    </tr>
-                  </thead>
-                  <tbody id="track-list">
-                    <!-- Here, we put the track list.-->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="#"><%= album.primaryGenreName %></a></li>
+    <li><a href="#artist/<%= album.artistId %>"><%= album.artistName %></a></li>
+    <li class="active"><%= album.collectionName %></li>
+  </ol>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="artist-infos">
+        <img class="img-responsive" src="<%= album.artworkUrl100 %>"/>
+        <h3><%= album.artistName %> - <%= album.collectionName %></h3>
+        <p>
+          <%= album.primaryGenreName %>  - <%= album.releaseDateString %> - <%= album.trackCount %> chansons
+        </p>
+        <div class="album-playlistchoice"></div>
+        <a href="<%= album.collectionViewUrl %>" target="itunes_store" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.png) no-repeat;width:110px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.svg);}"></a>
+      </div>
+      <div class="songs-list">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th class="play-column">Jouer</th>
+                <th>Titre</th>
+                <th class="playlistchoice-column"></th>
+              </tr>
+            </thead>
+            <tbody id="track-list">
+            </tbody>
+          </table>
         </div>
       </div>
+    </div>
+  </div>
+</div>
